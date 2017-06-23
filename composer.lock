@@ -4,8 +4,41 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc2015d4cf2acd09e09c59be7fee11d1",
+    "content-hash": "2ea6001f5bef1f43c0ab8edfc617e5c7",
     "packages": [
+        {
+            "name": "kameli/nummerplade-api",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kameli/nummerplade-api.git",
+                "reference": "6311b0ba6fa185bf00515a127dfebf41e4739ae7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kameli/nummerplade-api/zipball/6311b0ba6fa185bf00515a127dfebf41e4739ae7",
+                "reference": "6311b0ba6fa185bf00515a127dfebf41e4739ae7",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Kameli\\NummerpladeApi\\": "/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Bøndergaard",
+                    "email": "danielboendergaard@gmail.com"
+                }
+            ],
+            "description": "A simple package to access http://www.nummerpladeapi.dk (Requires subscription)",
+            "time": "2016-07-06T21:23:23+00:00"
+        },
         {
             "name": "nesbot/carbon",
             "version": "1.22.1",
