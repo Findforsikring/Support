@@ -10,5 +10,13 @@
             "name": "Morten Scheel",
             "email": "morten@mortenscheel.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Findforsikring\\Support\\": "src/"
+        },
+        "files": [
+            "scr/functions.php"
+        ]
+    }
 }
