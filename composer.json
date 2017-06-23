@@ -16,7 +16,7 @@
             "Findforsikring\\Support\\": "src/"
         },
         "files": [
-            "scr/functions.php"
+            "src/functions.php"
         ]
     }
 }
