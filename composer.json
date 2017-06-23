@@ -1,0 +1,14 @@
+{
+    "name": "findforsikring/support",
+    "description": "Support package for Findforsikring projects",
+    "type": "library",
+    "require": {
+        "nesbot/carbon": "^1.22"
+    },
+    "authors": [
+        {
+            "name": "Morten Scheel",
+            "email": "morten@mortenscheel.com"
+        }
+    ]
+}
