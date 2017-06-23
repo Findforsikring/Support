@@ -50,7 +50,6 @@ class SMS
             throw new \Exception("SMS_API_KEY missing in .env");
         }
         $this->url = "http://api.linkmobility.dk/v2/message.json?apikey=" . env('SMS_API_KEY');
-        $this->guzzle = new Client();
     }
 
     /**
