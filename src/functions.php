@@ -103,5 +103,17 @@ if (!function_exists('parse_danish_address')) {
                        ->returnData($returnData)
                        ->send();
         }
+
+        if (!function_exists('dump')) {
+            /**
+             * Dumps a variable ot the browser as plaintext using print_r()
+             * @param $variable
+             */
+            function dump($variable)
+                {
+                    echo '<pre>';
+                    print_r($variable);
+                }
+            }
     }
 }
