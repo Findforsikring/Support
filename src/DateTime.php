@@ -11,13 +11,25 @@ namespace Findforsikring\Support;
 
 use Carbon\Carbon;
 
+/**
+ * Class DateTime
+ * Helps converting dates and times into Danish readable strings
+ *
+ * @package Findforsikring\Support
+ */
 class DateTime extends Carbon
 {
+    /*
+     * Formatters
+     */
     const DATE_DANISH_MEDIUM = "%A d. %e. %B";
     const DATE_DANISH_LONG = "%A d. %e. %B %Y";
     const DATETIME_DANISH_MEDIUM = "%A d. %e. %B kl. %H:%m";
 
-    protected static $danishWeekdays = array(
+    /**
+     * @var array
+     */
+    protected static $danishWeekdays = [
         'mandag',
         'tirsdag',
         'onsdag',
@@ -25,9 +37,12 @@ class DateTime extends Carbon
         'fredag',
         'lørdag',
         'søndag'
-    );
+    ];
 
-    protected static $danishMonths = array(
+    /**
+     * @var array
+     */
+    protected static $danishMonths = [
         'januar',
         'februar',
         'marts',
@@ -40,18 +55,28 @@ class DateTime extends Carbon
         'oktober',
         'november',
         'december',
-    );
+    ];
 
+    /**
+     * @return string
+     */
     public function getDanishWeekday()
     {
         return static::$danishWeekdays[$this->format('N')];
     }
 
+    /**
+     * @return string
+     */
     public function getDanishMonth()
     {
         return static::$danishMonths[$this->format('n')];
     }
 
+    /**
+     * Finds the following weekday
+     * @return static|null
+     */
     public function getNextWeekday()
     {
         if ($this->isWeekday()){
@@ -67,12 +92,19 @@ class DateTime extends Carbon
         return null;
     }
 
+    /**
+     * @param bool $includeYear
+     * @return string
+     */
     public function toDanishDate($includeYear = false)
     {
         static::setLocale('da');
         return $this->formatLocalized($includeYear ? self::DATE_DANISH_LONG : self::DATE_DANISH_MEDIUM);
     }
 
+    /**
+     * @return string
+     */
     public function toDanishDateTime()
     {
         static::setLocale('da');

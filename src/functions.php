@@ -1,6 +1,14 @@
 <?php
 
 if (!function_exists('implode_danish_list')) {
+    /**
+     * Returns a string with the elements concatenated as:
+     * 1 element: "Element1"
+     * 2 elements: "Element1 og Element2"
+     * 3 or more elements: "Element1, Element2 og Element3"
+     * @param array $input
+     * @return string
+     */
     function implode_danish_list(array $input)
     {
         $output = "";
@@ -16,6 +24,13 @@ if (!function_exists('implode_danish_list')) {
     }
 }
 if (!function_exists('ordinal_suffix')) {
+    /**
+     * Adds an ordinal suffix to a number
+     * Examples: 1 => 1st, 2 => 2nd, 3 => 3rd
+     *
+     * @param $number
+     * @return string
+     */
     function ordinal_suffix($number)
     {
         $ends = array('th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th');
@@ -27,6 +42,13 @@ if (!function_exists('ordinal_suffix')) {
     }
 }
 if (!function_exists('parse_danish_address')) {
+    /**
+     * Parses a danish address into these components (if possible)
+     * Street, Number, Letter, Floor, Door
+     *
+     * @param $address
+     * @return array
+     */
     function parse_danish_address($address)
     {
         $regex = '/^([^0-9]*)([0-9]*)\s*([A-Z]?)[,\s]*([0-9]*)?(st|kl)?[\.,\s]*([a-zæøå]*)?(\d{0,4})?.*$/mi';
@@ -64,7 +86,9 @@ if (!function_exists('parse_danish_address')) {
 
     if (!function_exists('sms')) {
         /**
-         * Danish phone number
+         * Sends and SMS to a Danish recipient
+         *
+         * Phone number
          * @param string $recipient
          *
          * Sender name to display to the recipient
@@ -115,5 +139,40 @@ if (!function_exists('parse_danish_address')) {
                     print_r($variable);
                 }
             }
+    }
+    if (!function_exists('danish_holidays')){
+        /**
+         * Returns an associative array
+         * Key: Name of the holiday
+         * Value: Date string (Y-m-d), defaults to current year
+         *
+         * @param null $year
+         * @return array
+         */
+        function danish_holidays($year = null)
+        {
+            if (is_null($year)){
+                $year = (int) date('Y');
+            }
+            $dayLength = 24 * 60 * 60; // seconds
+            $easter = mktime(0, 0, 0, 3, (21 + (easter_days($year))), $year);
+            $holidays   = [];
+            $holidays['Nytårsdag'] = date('Y-m-d', mktime(0, 0, 0, 1, 1, $year));
+            $holidays['Palmesøndag'] = date('Y-m-d', $easter - (6.5 * $dayLength));
+            $holidays['Skærtorsdag'] = date('Y-m-d', $easter - (3 * $dayLength));
+            $holidays['Langfredag'] = date('Y-m-d', $easter - (2 * $dayLength));
+            $holidays['Påskedag'] = date('Y-m-d', $easter);
+            $holidays['2. påskedag'] = date('Y-m-d', $easter + (1 * $dayLength));
+            $holidays['Store bededag'] = date('Y-m-d', $easter + (26 * $dayLength));
+            $holidays['Kristi himmelfart'] = date('Y-m-d', $easter + (39 * $dayLength));
+            $holidays['Pinsedag'] = date('Y-m-d', $easter + (49 * $dayLength));
+            $holidays['2. pinsedag'] = date('Y-m-d', $easter + (50 * $dayLength));
+//		$holidays['Grundlovsdag'] = date('Y-m-d', mktime(0, 0, 0, 6, 5, $year));
+            $holidays['Juleaften'] = date('Y-m-d', mktime(0, 0, 0, 12, 24, $year));
+            $holidays['Juledag'] = date('Y-m-d', mktime(0, 0, 0, 12, 25, $year));
+            $holidays['2. juledag'] = date('Y-m-d', mktime(0, 0, 0, 12, 26, $year));
+            $holidays['Nytårsaften'] = date('Y-m-d', mktime(0, 0, 0, 12, 31, $year));
+            return $holidays;
+        }
     }
 }
