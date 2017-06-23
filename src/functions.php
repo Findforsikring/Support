@@ -61,4 +61,47 @@ if (!function_exists('parse_danish_address')) {
         }
         return $cleaned;
     }
+
+    if (!function_exists('sms')) {
+        /**
+         * Danish phone number
+         * @param string $recipient
+         *
+         * Sender name to display to the recipient
+         * Max 11 characters, no spaces
+         * @param string $sender
+         *
+         * Plaintext message
+         * Use \r\n for newlines
+         * @todo add validation rules
+         * @param $message
+         *
+         * Send as Flash SMS
+         * The SMS will be displayed in a modal and not stored in history
+         * @param bool $flash
+         *
+         * Optional endpoint that will receive status updates
+         * @todo add validation rules
+         * @param null $statusUrl
+         *
+         * Optional return data which will be included in status updates
+         * @todo add validation rules
+         * @param null $returnData
+         *
+         * Return value indicates only if the SMS was accepted by the provider
+         * To know whether or not it is received, use status URL and unique return data
+         * @return bool
+         */
+        function sms($recipient, $sender, $message, $flash = false, $statusUrl = null, $returnData = null)
+        {
+            $sms = new \Findforsikring\Support\SMS();
+            return $sms->recipient($recipient)
+                       ->sender($sender)
+                       ->message($message)
+                       ->flash($flash)
+                       ->statusUrl($statusUrl)
+                       ->returnData($returnData)
+                       ->send();
+        }
+    }
 }

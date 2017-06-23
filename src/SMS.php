@@ -36,6 +36,16 @@ class SMS
      * @var string
      */
     private $message;
+
+    /**
+     * @var string
+     */
+    private $statusUrl;
+
+    /**
+     * @var string
+     */
+    private $returnData;
     /**
      * @var bool
      */
@@ -45,11 +55,12 @@ class SMS
      * SMS constructor.
      * @throws \Exception
      */
-    public function __construct(){
-        if (!env('SMS_API_KEY')){
+    public function __construct()
+    {
+        if (!array_key_exists('SMS_API_KEY', $_ENV)) {
             throw new \Exception("SMS_API_KEY missing in .env");
         }
-        $this->url = "http://api.linkmobility.dk/v2/message.json?apikey=" . env('SMS_API_KEY');
+        $this->url = "http://api.linkmobility.dk/v2/message.json?apikey=" . $_ENV['SMS_API_KEY'];
     }
 
     /**
@@ -62,16 +73,23 @@ class SMS
         $guzzle = new Client();
         $params = [
             'message' => [
-                'sender' => $this->sender,
+                'sender'     => $this->sender,
                 'recipients' => $this->recipient,
-                'message' => $this->message
+                'message'    => $this->message
             ]
         ];
-        if ($this->flash){
+        if ($this->statusUrl){
+            $params['message']['statusurl'] = 0;
+        }
+        if ($this->returnData){
+            $params['message']['status'] = true;
+            $params['message']['returndata'] = $this->returnData;
+        }
+        if ($this->flash) {
             $params['message']['class'] = 0;
         }
         $response = $guzzle->post($this->url, [
-            'json' => $params,
+            'json'            => $params,
             'connect_timeout' => 120
         ]);
         return $response->getStatusCode() == 201;
@@ -79,19 +97,16 @@ class SMS
 
     /**
      * Get or set recipient phone number
-     * @param null $number
+     * @param string $number
      * @return $this
      */
-    public function recipient($number = null)
+    public function recipient($number)
     {
-        if ($number == null){
-            return $this->recipient;
-        }
         $number = trim($number);
-        if (!preg_match('/^(+45)?\d{8}$/', $number)){
+        if (!preg_match('/^(\+45)?\d{8}$/', $number)) {
             throw new \InvalidArgumentException("Invalid recipient");
         }
-        if (strlen($number) == 8){
+        if (strlen($number) == 8) {
             $number = '+45' . $number;
         }
         $this->recipient = $number;
@@ -99,16 +114,13 @@ class SMS
     }
 
     /**
-     * Get or set Sender name
-     * @param null $name
+     * Set Sender name
+     * @param string $name
      * @return $this
      */
-    public function sender($name = null)
+    public function sender($name)
     {
-        if ($name == null){
-            return $this->sender;
-        }
-        if (strlen($name) > 11){
+        if (strlen($name) > 11) {
             throw new \InvalidArgumentException("Sender must be 11 characters or less.");
         }
         $this->sender = $name;
@@ -116,26 +128,51 @@ class SMS
     }
 
     /**
-     * Get or set the message
-     * @param null $message
+     * Set the message
+     * @param string $message
      * @return $this
      */
-    public function message($message = null)
+    public function message($message)
     {
-        if ($message == null){
-            return $this->message;
-        }
         $this->message = $this->sanitizeMessage($message);
         return $this;
     }
 
     /**
+     * Set the status URL
+     * This URL will receive a POST requestwhen the SMS changes status
+     * Possible statuses: pending, received, rejected
+     *
+     * @param string $statusUrl
+     * @return SMS
+     */
+    public function statusUrl($statusUrl)
+    {
+        $this->statusUrl = $statusUrl;
+        return $this;
+    }
+
+    /**
+     * Get or set the return data
+     * This string will be included in status updates
+     *
+     * @param string $returnData
+     * @return SMS
+     */
+    public function returnData($returnData)
+    {
+        $this->returnData = $returnData;
+        return $this;
+    }
+
+    /**
      * Send as Flash SMS
+     * @param bool $flash
      * @return $this
      */
-    public function flash()
+    public function flash($flash = true)
     {
-        $this->flash = true;
+        $this->flash = $flash;
         return $this;
     }
 
@@ -144,13 +181,13 @@ class SMS
      */
     private function assertValid()
     {
-        if ($this->recipient === null){
+        if ($this->recipient === null) {
             throw new \Exception("Recipient missing");
         }
-        if ($this->sender === null){
+        if ($this->sender === null) {
             throw new \Exception("Sender missing");
         }
-        if ($this->message === null){
+        if ($this->message === null) {
             throw new \Exception("Message missing");
         }
     }
