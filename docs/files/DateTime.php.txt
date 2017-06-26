@@ -12,7 +12,6 @@ namespace Findforsikring\Support;
 use Carbon\Carbon;
 
 /**
- * Class DateTime
  * Helps converting dates and times into Danish readable strings
  *
  * @package Findforsikring\Support

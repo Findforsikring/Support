@@ -14,6 +14,7 @@ use Kameli\NummerpladeApi\Client;
 /**
  * Class VehicleService
  * @package Findforsikring\Support
+ * @mixin Client
  */
 class VehicleService extends Client
 {
