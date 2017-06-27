@@ -74,6 +74,7 @@ class SMS
     }
 
     /**
+     * Hej
      * Send the message
      * @return bool Whether or not the SMS was accepted by the provider
      */
@@ -83,9 +84,9 @@ class SMS
         $guzzle = new Client();
         $params = [
             'message' => [
-                'sender'     => $this->sender,
+                'sender' => $this->sender,
                 'recipients' => $this->recipient,
-                'message'    => $this->message
+                'message' => $this->message
             ]
         ];
         if ($this->statusUrl) {
@@ -99,7 +100,7 @@ class SMS
             $params['message']['class'] = 0;
         }
         $response = $guzzle->post($this->url, [
-            'json'            => $params,
+            'json' => $params,
             'connect_timeout' => 120
         ]);
         return $response->getStatusCode() == 201;
