@@ -4,6 +4,17 @@
  * @global
  */
 if (!function_exists('implode_danish_list')) {
+    if (!function_exists('is_assoc')) {
+        /**
+         * @param array $array
+         * @return bool
+         */
+        function is_assoc(array $array)
+        {
+            // Check if the keys are a zero-based index
+            return array() === $array ? false : array_keys($array) !== range(0, count($array) - 1);
+        }
+    }
     /**
      * Returns a string with the elements concatenated as:
      * 1 element: "Element1"
@@ -117,12 +128,12 @@ if (!function_exists('parse_danish_address')) {
         {
             $sms = new \Findforsikring\Support\SMS();
             return $sms->recipient($recipient)
-                       ->sender($sender)
-                       ->message($message)
-                       ->flash($flash)
-                       ->statusUrl($statusUrl)
-                       ->returnData($returnData)
-                       ->send();
+                ->sender($sender)
+                ->message($message)
+                ->flash($flash)
+                ->statusUrl($statusUrl)
+                ->returnData($returnData)
+                ->send();
         }
 
         if (!function_exists('dump')) {
@@ -131,13 +142,13 @@ if (!function_exists('parse_danish_address')) {
              * @param $variable
              */
             function dump($variable)
-                {
-                    echo '<pre>';
-                    print_r($variable);
-                }
+            {
+                echo '<pre>';
+                print_r($variable);
             }
+        }
     }
-    if (!function_exists('danish_holidays')){
+    if (!function_exists('danish_holidays')) {
         /**
          * Returns an associative array
          * Key: Name of the holiday
@@ -148,12 +159,12 @@ if (!function_exists('parse_danish_address')) {
          */
         function danish_holidays($year = null)
         {
-            if (is_null($year)){
-                $year = (int) date('Y');
+            if (is_null($year)) {
+                $year = (int)date('Y');
             }
             $dayLength = 24 * 60 * 60; // seconds
             $easter = mktime(0, 0, 0, 3, (21 + (easter_days($year))), $year);
-            $holidays   = [];
+            $holidays = [];
             $holidays['Nytårsdag'] = date('Y-m-d', mktime(0, 0, 0, 1, 1, $year));
             $holidays['Palmesøndag'] = date('Y-m-d', $easter - (6.5 * $dayLength));
             $holidays['Skærtorsdag'] = date('Y-m-d', $easter - (3 * $dayLength));
