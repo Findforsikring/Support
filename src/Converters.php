@@ -35,6 +35,7 @@ class Converters
      * @param array $array
      * @param string $xmlVersion
      * @param string $encoding
+     * @return string
      */
     public static function array2Xml(array $array, $xmlVersion = "1.0", $encoding = "utf-8")
     {
@@ -42,7 +43,7 @@ class Converters
         $root = self::appendXml($array, $xml);
         $xml->appendChild($root);
         $xml->normalizeDocument();
-        echo $xml->saveXml();
+        return trim($xml->saveXml());
     }
 
     /**
