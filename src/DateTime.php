@@ -23,20 +23,20 @@ class DateTime extends Carbon
      */
     const DATE_DANISH_MEDIUM = "%A d. %e. %B";
     const DATE_DANISH_LONG = "%A d. %e. %B %Y";
-    const DATETIME_DANISH_MEDIUM = "%A d. %e. %B kl. %H:%m";
+    const DATETIME_DANISH_MEDIUM = "%A d. %e. %B kl. %H:%M";
 
     /**
      * Names of Danish weekdays
      * @var array
      */
     protected static $danishWeekdays = [
+        'søndag',
         'mandag',
         'tirsdag',
         'onsdag',
         'torsdag',
         'fredag',
         'lørdag',
-        'søndag'
     ];
 
     /**
@@ -64,7 +64,7 @@ class DateTime extends Carbon
      */
     public function getDanishWeekday()
     {
-        return static::$danishWeekdays[$this->format('N')];
+        return static::$danishWeekdays[$this->format('w')];
     }
 
     /**
@@ -73,11 +73,12 @@ class DateTime extends Carbon
      */
     public function getDanishMonth()
     {
-        return static::$danishMonths[$this->format('n')];
+        return static::$danishMonths[$this->format('n') - 1];
     }
 
     /**
-     * Finds the following weekday
+     * If this date is not a weekday, return the following weekday
+     * Otherwise return this
      * @return static|null
      */
     public function getNextWeekday()
@@ -102,7 +103,7 @@ class DateTime extends Carbon
      */
     public function toDanishDate($includeYear = false)
     {
-        static::setLocale('da');
+        setlocale(LC_TIME, 'da_DK.utf8');
         return $this->formatLocalized($includeYear ? self::DATE_DANISH_LONG : self::DATE_DANISH_MEDIUM);
     }
 
@@ -112,7 +113,7 @@ class DateTime extends Carbon
      */
     public function toDanishDateTime()
     {
-        static::setLocale('da');
+        setlocale(LC_TIME, 'da_DK.utf8');
         return $this->formatLocalized(self::DATETIME_DANISH_MEDIUM);
     }
 }
