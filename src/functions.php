@@ -183,4 +183,19 @@ if (!function_exists('parse_danish_address')) {
             return $holidays;
         }
     }
+    if (!function_exists('toDKK')) {
+        /**
+         * Converts a number (float) into formatted Danish Kroner
+         * Default prefix is "kr. "
+         * Example: 2759782.25 => "kr. 2.759.782,25".
+         * @param float $number
+         * @param string $prefix
+         * @param null $postfix
+         * @return string
+         */
+        function toDKK($number, $prefix = 'kr. ', $postfix = null)
+            {
+                return \Findforsikring\Support\Number::formatDanishKroner($number, $prefix, $postfix);
+            }
+        }
 }
