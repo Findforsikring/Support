@@ -64,11 +64,13 @@ class DateTimeTest extends \PHPUnit\Framework\TestCase
     public function testReadableDateTimes()
     {
         $datetime = new DateTime("2017-06-28 10:48:55");
+        $expectedShort = "28. juni";
         $expectedMedium = "onsdag d. 28. juni";
         $expectedLong = "onsdag d. 28. juni 2017";
         $expectedWithTime = "onsdag d. 28. juni kl. 10:48";
-        $this->assertEquals($datetime->toDanishDate(false), $expectedMedium);
-        $this->assertEquals($datetime->toDanishDate(true), $expectedLong);
+        $this->assertEquals($datetime->toDanishDate('short'), $expectedShort);
+        $this->assertEquals($datetime->toDanishDate(), $expectedMedium);
+        $this->assertEquals($datetime->toDanishDate('long'), $expectedLong);
         $this->assertEquals($datetime->toDanishDateTime(), $expectedWithTime);
     }
 }

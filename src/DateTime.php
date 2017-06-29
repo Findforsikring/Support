@@ -21,6 +21,7 @@ class DateTime extends Carbon
     /*
      * Format codes
      */
+    const DATE_DANISH_SHORT = "%e. %B";
     const DATE_DANISH_MEDIUM = "%A d. %e. %B";
     const DATE_DANISH_LONG = "%A d. %e. %B %Y";
     const DATETIME_DANISH_MEDIUM = "%A d. %e. %B kl. %H:%M";
@@ -98,13 +99,26 @@ class DateTime extends Carbon
 
     /**
      * Format as Danish date
-     * @param bool $includeYear
+     * @param string $type
      * @return string
      */
-    public function toDanishDate($includeYear = false)
+    public function toDanishDate($type = 'medium')
     {
         setlocale(LC_TIME, 'da_DK.utf8');
-        return $this->formatLocalized($includeYear ? self::DATE_DANISH_LONG : self::DATE_DANISH_MEDIUM);
+        switch ($type){
+            case 'short':
+                $format = static::DATE_DANISH_SHORT;
+                break;
+            case 'medium':
+                $format = static::DATE_DANISH_MEDIUM;
+                break;
+            case 'long':
+                $format = static::DATE_DANISH_LONG;
+                break;
+            default:
+                throw new \InvalidArgumentException("Unknown format: $type");
+        }
+        return $this->formatLocalized($format);
     }
 
     /**
