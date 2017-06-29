@@ -1,0 +1,177 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Created by PhpStorm.
+ * User: Morten
+ * Date: 23-06-2017
+ * Time: 13:12
+ */
+
+namespace Findforsikring\Support;
+
+
+use Carbon\Carbon;
+
+/**
+ * Helps converting dates and times into Danish readable strings
+ *
+ * @package Findforsikring\Support
+ */
+class DateTime extends Carbon
+{
+    /*
+     * Format codes
+     */
+    const DATE_DANISH_SHORT = &quot;%e. %B&quot;;
+    const DATE_DANISH_MEDIUM = &quot;%A d. %e. %B&quot;;
+    const DATE_DANISH_LONG = &quot;%A d. %e. %B %Y&quot;;
+    const DATETIME_DANISH_MEDIUM = &quot;%A d. %e. %B kl. %H:%M&quot;;
+
+    /**
+     * Names of Danish weekdays
+     * @var array
+     */
+    protected static $danishWeekdays = [
+        's&oslash;ndag',
+        'mandag',
+        'tirsdag',
+        'onsdag',
+        'torsdag',
+        'fredag',
+        'l&oslash;rdag',
+    ];
+
+    /**
+     * Names of Danish months
+     * @var array
+     */
+    protected static $danishMonths = [
+        'januar',
+        'februar',
+        'marts',
+        'april',
+        'maj',
+        'juni',
+        'juli',
+        'august',
+        'september',
+        'oktober',
+        'november',
+        'december',
+    ];
+
+    /**
+     * Get weekday string in Danish
+     * @return string
+     */
+    public function getDanishWeekday()
+    {
+        return static::$danishWeekdays[$this-&gt;format('w')];
+    }
+
+    /**
+     * Get month string in Danish
+     * @return string
+     */
+    public function getDanishMonth()
+    {
+        return static::$danishMonths[$this-&gt;format('n') - 1];
+    }
+
+    /**
+     * If this date is not a weekday, return the following weekday
+     * Otherwise return this
+     * @return static|null
+     */
+    public function getNextWeekday()
+    {
+        if ($this-&gt;isWeekday()){
+            return $this;
+        }
+        // Weekdays are never more than 3 days away
+        for ($i = 1; $i &lt;= 3; $i++) {
+            $candidate = (new static($this))-&gt;addDays($i);
+            if ($candidate-&gt;isWeekday()){
+                return $candidate;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Format as Danish date
+     * @param string $type
+     * @return string
+     */
+    public function toDanishDate($type = 'medium')
+    {
+        setlocale(LC_TIME, 'da_DK.utf8');
+        switch ($type){
+            case 'short':
+                $format = static::DATE_DANISH_SHORT;
+                break;
+            case 'medium':
+                $format = static::DATE_DANISH_MEDIUM;
+                break;
+            case 'long':
+                $format = static::DATE_DANISH_LONG;
+                break;
+            default:
+                throw new \InvalidArgumentException(&quot;Unknown format: $type&quot;);
+        }
+        return $this-&gt;formatLocalized($format);
+    }
+
+    /**
+     * Format as Danish date including time
+     * @return string
+     */
+    public function toDanishDateTime()
+    {
+        setlocale(LC_TIME, 'da_DK.utf8');
+        return $this-&gt;formatLocalized(self::DATETIME_DANISH_MEDIUM);
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

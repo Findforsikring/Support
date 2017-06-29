@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Created by PhpStorm.
+ * User: Morten
+ * Date: 23-06-2017
+ * Time: 14:40
+ */
+
+namespace Findforsikring\Support;
+
+
+use Kameli\NummerpladeApi\Client;
+
+/**
+ * Class VehicleService
+ * @package Findforsikring\Support
+ * @mixin Client
+ */
+class VehicleService extends Client
+{
+    /**
+     * VehicleService constructor.
+     * @throws \Exception
+     */
+    public function __construct(){
+        if (!array_key_exists('NUMMERPLADE_API_TOKEN', $_ENV)){
+            throw new \Exception(&quot;NUMMERPLADE_API_TOKEN er ikke sat i .env&quot;);
+        }
+        parent::__construct($_ENV['NUMMERPLADE_API_TOKEN']);
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

@@ -18,6 +18,10 @@ use Kameli\NummerpladeApi\Client;
  */
 class VehicleService extends Client
 {
+    /**
+     * VehicleService constructor.
+     * @throws \Exception
+     */
     public function __construct(){
         if (!array_key_exists('NUMMERPLADE_API_TOKEN', $_ENV)){
             throw new \Exception("NUMMERPLADE_API_TOKEN er ikke sat i .env");

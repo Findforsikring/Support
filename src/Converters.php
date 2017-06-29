@@ -11,6 +11,10 @@ namespace Findforsikring\Support;
 
 use DOMDocument;
 
+/**
+ * Class Converters
+ * @package Findforsikring\Support
+ */
 class Converters
 {
 

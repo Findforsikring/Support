@@ -6,6 +6,7 @@
 if (!function_exists('implode_danish_list')) {
     if (!function_exists('is_assoc')) {
         /**
+         * Checks if array is associative or not
          * @param array $array
          * @return bool
          */
@@ -185,8 +186,8 @@ if (!function_exists('parse_danish_address')) {
     }
     if (!function_exists('toDKK')) {
         /**
-         * Converts a number (float) into formatted Danish Kroner
-         * Default prefix is "kr. "
+         * Converts a number (float) into formatted Danish Kroner.
+         * Default prefix is "kr. ".
          * Example: 2759782.25 => "kr. 2.759.782,25".
          * @param float $number
          * @param string $prefix

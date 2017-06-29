@@ -9,8 +9,19 @@
 namespace Findforsikring\Support;
 
 
+/**
+ * Class Number
+ * @package Findforsikring\Support
+ */
 class Number
 {
+    /**
+     * Formats a float value as Danish currency
+     * @param $amount
+     * @param string $prefix
+     * @param null $postfix
+     * @return string
+     */
     public static function formatDanishKroner($amount, $prefix = 'kr. ', $postfix = null)
     {
         return ($prefix ?: '') . number_format($amount, 2, ',', '.') . ($postfix ?: '');

@@ -1,0 +1,246 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Helper functions
+ * @global
+ */
+if (!function_exists('implode_danish_list')) {
+    if (!function_exists('is_assoc')) {
+        /**
+         * Checks if array is associative or not
+         * @param array $array
+         * @return bool
+         */
+        function is_assoc(array $array)
+        {
+            // Check if the keys are a zero-based index
+            return array() === $array ? false : array_keys($array) !== range(0, count($array) - 1);
+        }
+    }
+    /**
+     * Returns a string with the elements concatenated as:
+     * 1 element: &quot;Element1&quot;
+     * 2 elements: &quot;Element1 og Element2&quot;
+     * 3 or more elements: &quot;Element1, Element2 og Element3&quot;
+     * @param array $input
+     * @return string
+     */
+    function implode_danish_list(array $input)
+    {
+        $output = &quot;&quot;;
+        for ($i = 0; $i &lt; count($input); $i++) {
+            if ($i == count($input) - 1) {
+                $output .= &quot; og &quot;;
+            } else if ($i &gt; 0) {
+                $output .= &quot;, &quot;;
+            }
+            $output .= $input[$i];
+        }
+        return $output;
+    }
+}
+if (!function_exists('ordinal_suffix')) {
+    /**
+     * Adds an ordinal suffix to a number
+     * Examples: 1 =&gt; 1st, 2 =&gt; 2nd, 3 =&gt; 3rd
+     *
+     * @param $number
+     * @return string
+     */
+    function ordinal_suffix($number)
+    {
+        $ends = array('th', 'st', 'nd', 'rd', 'th', 'th', 'th', 'th', 'th', 'th');
+        if ((($number % 100) &gt;= 11) &amp;&amp; (($number % 100) &lt;= 13)) {
+            return $number . 'th';
+        } else {
+            return $number . $ends[$number % 10];
+        }
+    }
+}
+if (!function_exists('parse_danish_address')) {
+    /**
+     * Parses a danish address into these components (if possible)
+     * Street, Number, Letter, Floor, Door
+     *
+     * @param $address
+     * @return array
+     */
+    function parse_danish_address($address)
+    {
+        $regex = '/^([^0-9]*)([0-9]*)\s*([A-Z]?)[,\s]*([0-9]*)?(st|kl)?[\.,\s]*([a-z&aelig;&oslash;&aring;]*)?(\d{0,4})?.*$/mi';
+        preg_match_all($regex, $address, $matches);
+        $result = array();
+        for ($i = 1; $i &lt; count($matches); $i++) {
+            if (isset($matches[$i][0])) {
+                $result[] = $matches[$i][0];
+            }
+        }
+        $cleaned = array();
+        $components = count($result);
+        if ($components &gt; 0) {
+            $cleaned['street'] = trim($result[0]);
+        }
+        if ($components &gt; 1) {
+            $cleaned['number'] = $result[1];
+        }
+        if ($components &gt; 2) {
+            $cleaned['letter'] = $result[2];
+        }
+        if ($components &gt; 3) {
+            $cleaned['floor'] = $result[3] == '' ? $result[4] : $result[3];
+        }
+        if ($components &gt; 5) {
+            $cleaned['door'] = $result[5];
+        }
+        foreach ($cleaned as $name =&gt; $value) {
+            if (is_null($value) || $value == '') {
+                unset($cleaned[$name]);
+            }
+        }
+        return $cleaned;
+    }
+
+    if (!function_exists('sms')) {
+        /**
+         * Sends and SMS to a Danish recipient
+         *
+         * @param string $recipient Phone number
+         *
+         * @param string $sender Sender name to display to the recipient
+         *                       Max 11 characters, no spaces
+         *
+         * @todo add validation rules
+         * @param $message Plaintext message
+         *                 Use \r\n for newlines
+         *
+         * @param bool $flash Send as Flash SMS
+         *                    The SMS will be displayed in a modal and not stored in history
+         *
+         * @todo add validation rules
+         * @param null $statusUrl Optional endpoint that will receive status updates
+         *
+         * @todo add validation rules
+         *
+         * @param null $returnData Optional return data which will be included in status updates
+         *
+         * @return bool Return value indicates only if the SMS was accepted by the provider
+         *              To know whether or not it is received, use status URL and unique return data
+         */
+        function sms($recipient, $sender, $message, $flash = false, $statusUrl = null, $returnData = null)
+        {
+            $sms = new \Findforsikring\Support\SMS();
+            return $sms-&gt;recipient($recipient)
+                -&gt;sender($sender)
+                -&gt;message($message)
+                -&gt;flash($flash)
+                -&gt;statusUrl($statusUrl)
+                -&gt;returnData($returnData)
+                -&gt;send();
+        }
+
+        if (!function_exists('dump')) {
+            /**
+             * Dumps a variable ot the browser as plaintext using print_r()
+             * @param $variable
+             */
+            function dump($variable)
+            {
+                echo '&lt;pre&gt;';
+                print_r($variable);
+            }
+        }
+    }
+    if (!function_exists('danish_holidays')) {
+        /**
+         * Returns an associative array
+         * Key: Name of the holiday
+         * Value: Date string (Y-m-d), defaults to current year
+         *
+         * @param null $year
+         * @return array
+         */
+        function danish_holidays($year = null)
+        {
+            if (is_null($year)) {
+                $year = (int)date('Y');
+            }
+            $dayLength = 24 * 60 * 60; // seconds
+            $easter = mktime(0, 0, 0, 3, (21 + (easter_days($year))), $year);
+            $holidays = [];
+            $holidays['Nyt&aring;rsdag'] = date('Y-m-d', mktime(0, 0, 0, 1, 1, $year));
+            $holidays['Palmes&oslash;ndag'] = date('Y-m-d', $easter - (6.5 * $dayLength));
+            $holidays['Sk&aelig;rtorsdag'] = date('Y-m-d', $easter - (3 * $dayLength));
+            $holidays['Langfredag'] = date('Y-m-d', $easter - (2 * $dayLength));
+            $holidays['P&aring;skedag'] = date('Y-m-d', $easter);
+            $holidays['2. p&aring;skedag'] = date('Y-m-d', $easter + (1 * $dayLength));
+            $holidays['Store bededag'] = date('Y-m-d', $easter + (26 * $dayLength));
+            $holidays['Kristi himmelfart'] = date('Y-m-d', $easter + (39 * $dayLength));
+            $holidays['Pinsedag'] = date('Y-m-d', $easter + (49 * $dayLength));
+            $holidays['2. pinsedag'] = date('Y-m-d', $easter + (50 * $dayLength));
+//		$holidays['Grundlovsdag'] = date('Y-m-d', mktime(0, 0, 0, 6, 5, $year));
+            $holidays['Juleaften'] = date('Y-m-d', mktime(0, 0, 0, 12, 24, $year));
+            $holidays['Juledag'] = date('Y-m-d', mktime(0, 0, 0, 12, 25, $year));
+            $holidays['2. juledag'] = date('Y-m-d', mktime(0, 0, 0, 12, 26, $year));
+            $holidays['Nyt&aring;rsaften'] = date('Y-m-d', mktime(0, 0, 0, 12, 31, $year));
+            return $holidays;
+        }
+    }
+    if (!function_exists('toDKK')) {
+        /**
+         * Converts a number (float) into formatted Danish Kroner.
+         * Default prefix is &quot;kr. &quot;.
+         * Example: 2759782.25 =&gt; &quot;kr. 2.759.782,25&quot;.
+         * @param float $number
+         * @param string $prefix
+         * @param null $postfix
+         * @return string
+         */
+        function toDKK($number, $prefix = 'kr. ', $postfix = null)
+            {
+                return \Findforsikring\Support\Number::formatDanishKroner($number, $prefix, $postfix);
+            }
+        }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

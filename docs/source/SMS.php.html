@@ -1,0 +1,265 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Created by PhpStorm.
+ * User: Morten
+ * Date: 23-06-2017
+ * Time: 14:51
+ */
+
+namespace Findforsikring\Support;
+
+
+use GuzzleHttp\Client;
+
+/**
+ * Class SMS
+ * @package Findforsikring\Support
+ */
+class SMS
+{
+    /*
+     * Example:
+     * $sms = new Findforsikring\Support\SMS
+     * $sms-&gt;sender(&quot;Forsikring&quot;)-&gt;recipient(&quot;61693354&quot;)-&gt;message(&quot;Wazzup?&quot;)-&gt;send();
+     */
+
+    /**
+     * API endpoint
+     * @var string
+     */
+    private $url;
+    /**
+     * Recipient phone number
+     * @var string
+     */
+    private $recipient;
+    /**
+     * Sender name or phone number
+     * @var string
+     */
+    private $sender;
+    /**
+     * Message content
+     * @var string
+     */
+    private $message;
+
+    /**
+     * Status URL endpoint
+     * @var string
+     */
+    private $statusUrl;
+
+    /**
+     * Unique identifier
+     * @var string
+     */
+    private $returnData;
+    /**
+     * Send as flash SMS
+     * @var bool
+     */
+    private $flash = false;
+
+    /**
+     * SMS constructor.
+     * @throws \Exception
+     */
+    public function __construct()
+    {
+        if (!array_key_exists('SMS_API_KEY', $_ENV)) {
+            throw new \Exception(&quot;SMS_API_KEY missing in .env&quot;);
+        }
+        $this-&gt;url = &quot;http://api.linkmobility.dk/v2/message.json?apikey=&quot; . $_ENV['SMS_API_KEY'];
+    }
+
+    /**
+     * Hej
+     * Send the message
+     * @return bool Whether or not the SMS was accepted by the provider
+     */
+    public function send()
+    {
+        $this-&gt;assertValid();
+        $guzzle = new Client();
+        $params = [
+            'message' =&gt; [
+                'sender' =&gt; $this-&gt;sender,
+                'recipients' =&gt; $this-&gt;recipient,
+                'message' =&gt; $this-&gt;message
+            ]
+        ];
+        if ($this-&gt;statusUrl) {
+            $params['message']['statusurl'] = 0;
+        }
+        if ($this-&gt;returnData) {
+            $params['message']['status'] = true;
+            $params['message']['returndata'] = $this-&gt;returnData;
+        }
+        if ($this-&gt;flash) {
+            $params['message']['class'] = 0;
+        }
+        $response = $guzzle-&gt;post($this-&gt;url, [
+            'json' =&gt; $params,
+            'connect_timeout' =&gt; 120
+        ]);
+        return $response-&gt;getStatusCode() == 201;
+    }
+
+    /**
+     * Get or set recipient phone number
+     * @param string $number Danish phone number
+     * @return $this
+     */
+    public function recipient($number)
+    {
+        $number = trim($number);
+        if (!preg_match('/^(\+45)?\d{8}$/', $number)) {
+            throw new \InvalidArgumentException(&quot;Invalid recipient&quot;);
+        }
+        if (strlen($number) == 8) {
+            $number = '+45' . $number;
+        }
+        $this-&gt;recipient = $number;
+        return $this;
+    }
+
+    /**
+     * Set Sender name
+     * @param string $name Max 11 characters, no spaces
+     * @return $this
+     */
+    public function sender($name)
+    {
+        if (strlen($name) &gt; 11) {
+            throw new \InvalidArgumentException(&quot;Sender must be 11 characters or less.&quot;);
+        }
+        $this-&gt;sender = $name;
+        return $this;
+    }
+
+    /**
+     * Set the message
+     * @param string $message SMS content
+     * @return $this
+     */
+    public function message($message)
+    {
+        $this-&gt;message = $this-&gt;sanitizeMessage($message);
+        return $this;
+    }
+
+    /**
+     * Set the status URL
+     * This URL will receive a POST requestwhen the SMS changes status
+     * Possible statuses: pending, received, rejected
+     *
+     * @param string $statusUrl Endpoint for status updates
+     * @return SMS
+     */
+    public function statusUrl($statusUrl)
+    {
+        $this-&gt;statusUrl = $statusUrl;
+        return $this;
+    }
+
+    /**
+     * Get or set the return data
+     * This string will be included in status updates
+     *
+     * @param string $returnData Unique identifier
+     * @return SMS
+     */
+    public function returnData($returnData)
+    {
+        $this-&gt;returnData = $returnData;
+        return $this;
+    }
+
+    /**
+     * Send as Flash SMS
+     * @param bool $flash
+     * @return $this
+     */
+    public function flash($flash = true)
+    {
+        $this-&gt;flash = $flash;
+        return $this;
+    }
+
+    /**
+     * Throws an exception if mandatory data is missing
+     * @throws \Exception
+     */
+    private function assertValid()
+    {
+        if ($this-&gt;recipient === null) {
+            throw new \Exception(&quot;Recipient missing&quot;);
+        }
+        if ($this-&gt;sender === null) {
+            throw new \Exception(&quot;Sender missing&quot;);
+        }
+        if ($this-&gt;message === null) {
+            throw new \Exception(&quot;Message missing&quot;);
+        }
+    }
+
+    /**
+     * Attempts to convert html to plaintext
+     * @param $message
+     * @return string
+     */
+    private function sanitizeMessage($message)
+    {
+        // Attempt to convert html to plain text
+        // Convert &lt;br&gt; to \r\n
+        $message = preg_replace('/&lt;br ?\/?&gt;/', &quot;\r\n&quot;, $message);
+        // Remove all other tags
+        $message = strip_tags($message);
+        return $message;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

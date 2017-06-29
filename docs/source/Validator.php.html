@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+/**
+ * Created by PhpStorm.
+ * User: Morten
+ * Date: 26-06-2017
+ * Time: 11:55
+ */
+
+namespace Findforsikring\Support;
+
+
+/**
+ * Class Validator
+ * @package Findforsikring\Support
+ */
+class Validator
+{
+    /**
+     * @var mixed value to validate
+     */
+    private $value;
+
+    /**
+     * Validator constructor.
+     * @param $value
+     */
+    public function __construct($value){
+        $this-&gt;value = $value;
+    }
+
+    /**
+     * Check if domain name is valid
+     * @return bool
+     */
+    public function isValidDomainName()
+    {
+        return (bool) preg_match(&quot;/^([-a-z0-9&aelig;&oslash;&aring;]{2,100})\.([a-z\.]{2,8})$/i&quot;, $this-&gt;value);
+    }
+
+    /**
+     * Checks if the domain name is set up for Mailgun
+     * @return bool
+     */
+    public function isRegisteredMailgunDomain()
+    {
+        $txt_records = dns_get_record($this-&gt;value, DNS_TXT);
+        foreach ($txt_records as $txt_record) {
+            $txt = $txt_record['txt'];
+            if (preg_match('/mailgun\.org/', $txt)){
+                return true;
+            }
+        }
+        return false;
+    }
+}</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>

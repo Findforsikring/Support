@@ -29,11 +29,12 @@ class Validator
     }
 
     /**
-     * @return int
+     * Check if domain name is valid
+     * @return bool
      */
     public function isValidDomainName()
     {
-        return preg_match("/^([-a-z0-9æøå]{2,100})\.([a-z\.]{2,8})$/i", $this->value);
+        return (bool) preg_match("/^([-a-z0-9æøå]{2,100})\.([a-z\.]{2,8})$/i", $this->value);
     }
 
     /**

@@ -1,0 +1,769 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project title="Findforsikring/Support" version="2.8.5">
+  <partials/>
+  <file path="DateTime.php" generated-path="DateTime.html" hash="e52fd691a7707483ed0cc071d23a4173" package="Default">
+    <docblock line="0">
+      <description>Created by PhpStorm.</description>
+      <long-description>User: Morten
+Date: 23-06-2017
+Time: 13:12</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="Carbon">\Carbon\Carbon</namespace-alias>
+    <class final="false" abstract="false" namespace="Findforsikring\Support" line="19" package="Findforsikring\Support">
+      <extends>\Carbon\Carbon</extends>
+      <name>DateTime</name>
+      <full_name>\Findforsikring\Support\DateTime</full_name>
+      <docblock line="19">
+        <description>Helps converting dates and times into Danish readable strings</description>
+        <long-description></long-description>
+        <tag name="package" line="19" description="Findforsikring\Support"/>
+      </docblock>
+      <constant namespace="Findforsikring\Support" line="24" package="Findforsikring\Support">
+        <name>DATE_DANISH_SHORT</name>
+        <full_name>\Findforsikring\Support\DateTime::DATE_DANISH_SHORT</full_name>
+        <value>"%e. %B"</value>
+        <docblock line="24">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="Findforsikring\Support" line="25" package="Findforsikring\Support">
+        <name>DATE_DANISH_MEDIUM</name>
+        <full_name>\Findforsikring\Support\DateTime::DATE_DANISH_MEDIUM</full_name>
+        <value>"%A d. %e. %B"</value>
+        <docblock line="25">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="Findforsikring\Support" line="26" package="Findforsikring\Support">
+        <name>DATE_DANISH_LONG</name>
+        <full_name>\Findforsikring\Support\DateTime::DATE_DANISH_LONG</full_name>
+        <value>"%A d. %e. %B %Y"</value>
+        <docblock line="26">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="Findforsikring\Support" line="27" package="Findforsikring\Support">
+        <name>DATETIME_DANISH_MEDIUM</name>
+        <full_name>\Findforsikring\Support\DateTime::DATETIME_DANISH_MEDIUM</full_name>
+        <value>"%A d. %e. %B kl. %H:%M"</value>
+        <docblock line="27">
+          <description></description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <property static="true" visibility="protected" namespace="Findforsikring\Support" line="33" package="Findforsikring\Support">
+        <name>$danishWeekdays</name>
+        <full_name>\Findforsikring\Support\DateTime::danishWeekdays</full_name>
+        <default>array('søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag')</default>
+        <docblock line="33">
+          <description>Names of Danish weekdays</description>
+          <long-description></long-description>
+          <tag name="var" line="33" description="" type="array" variable="">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property static="true" visibility="protected" namespace="Findforsikring\Support" line="47" package="Findforsikring\Support">
+        <name>$danishMonths</name>
+        <full_name>\Findforsikring\Support\DateTime::danishMonths</full_name>
+        <default>array('januar', 'februar', 'marts', 'april', 'maj', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'december')</default>
+        <docblock line="47">
+          <description>Names of Danish months</description>
+          <long-description></long-description>
+          <tag name="var" line="47" description="" type="array" variable="">
+            <type>array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="66" package="Findforsikring\Support">
+        <name>getDanishWeekday</name>
+        <full_name>\Findforsikring\Support\DateTime::getDanishWeekday()</full_name>
+        <docblock line="66">
+          <description>Get weekday string in Danish</description>
+          <long-description></long-description>
+          <tag name="return" line="66" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="75" package="Findforsikring\Support">
+        <name>getDanishMonth</name>
+        <full_name>\Findforsikring\Support\DateTime::getDanishMonth()</full_name>
+        <docblock line="75">
+          <description>Get month string in Danish</description>
+          <long-description></long-description>
+          <tag name="return" line="75" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="85" package="Findforsikring\Support">
+        <name>getNextWeekday</name>
+        <full_name>\Findforsikring\Support\DateTime::getNextWeekday()</full_name>
+        <docblock line="85">
+          <description>If this date is not a weekday, return the following weekday
+Otherwise return this</description>
+          <long-description></long-description>
+          <tag name="return" line="85" description="" type="static|null">
+            <type>static</type>
+            <type>null</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="105" package="Findforsikring\Support">
+        <name>toDanishDate</name>
+        <full_name>\Findforsikring\Support\DateTime::toDanishDate()</full_name>
+        <docblock line="105">
+          <description>Format as Danish date</description>
+          <long-description></long-description>
+          <tag name="param" line="105" description="" type="string" variable="$type">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="105" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$type</name>
+          <default>'medium'</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="128" package="Findforsikring\Support">
+        <name>toDanishDateTime</name>
+        <full_name>\Findforsikring\Support\DateTime::toDanishDateTime()</full_name>
+        <docblock line="128">
+          <description>Format as Danish date including time</description>
+          <long-description></long-description>
+          <tag name="return" line="128" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <source>eJytVltv2zYUfjfg/3BgOJCVxnGdANtgN12zOG2MxcmwJBiGpghoibIYU6RAUnHTLv+r7/1jO9TFF8m5eJ1eKB2d2/edc0i++TUO43qts71dr8E2HClKDPVhfA9/hPGFkSraTX9caap6MJLKUJEKBqjXg7399uuf2nuvuz+nwksWobC73+vu2e9OvVavCRJRHROPwnsm/EAqzaaKicn1RRLH6K9vleq1RFM4ImosxXW2pPIirxPKYw2eFHdUGTQGH8NrIMIHgzE1MGEk5iSYDgEx+GTMKWhjA2nrIfXyDtOYksljmeQpe5xoneKzcIB+Rsi+zpOr176iGj6d7WxFt++RJWIwO5/qQtjJXjBjbWBweHl8Mzg8G16c3FycnP95CQfQ2KK7sPVbo/+Y4uh4MLwapZqH4KPuM/qn52cfytqw9XfV4HI4eiYITDkuJ72tUSOtQoZ3AfjMlhRkUBA+o3Tqk/s5eHh3RxQQpch9iY9YSUM922HaEMM8aPqpi79yD5jJx9wEH0d//yZ8MnF2lmQRqYgMU7osQ7gVNVlVCxQti/j3b2pJ9ulFFERSmPAHCBil9iX4t0QkRK3mS8eqLIuIMnpFQmLFeEnnduX7NhGsJOCrApJMEm1WRJrGhkZjuhpeTo0sy4S8qyr61FsRrmf2AzVFQ+UDjMOd07zgV1GTKJErlDlOxhyZDRLhGSYFTKgZLHdZy830vi5ym7uzNen1Sl35sWlCpttvg3TQW87McT/lY/XwGIS0If5vAGmXvDj9rKfKyQvHhTZ0nwQwDMAapbss4CqkAVJUZacIZ0IKgeRczizG/O/cxzn+VjOG2/pcnek1+G3K/4iE8+dJOMO9+PEasgBaOVam52ruksYSValif/HrYfHa6cB8OyKKgqB46GA98dWERMA+ZL9mc7D4ILsYneEAd/uA65sD2Lcvr165UMqg6eEOxlJqD6Al6CwnIUveddtvie8PMAT6c/urtinGuf2TQJfBzi1K7h7WEpBb2Zo81ST5sUd0sQfaAIsCx0SRqBiAprmP6X9rfiMz9/ZAbqV+kDYnoj5LIqfaBZoaLj3Caev06MYedTu48ZCbwe+7iQl+cZYJ1TNmvBAyp2X6PIKd6+gQ7wVOr8psMxsnTKUYusoh369ajfFqMu2vC5Tj2ThSdoBvFIpLMdk8kL1evDCMTwOScLMmhAmVnIFt+euhuCOc+YdqkkRUmOPPHh4uWO9W40pMhZwJyNLpZb3TcNcP6/I4F3vcqa0/+0L9Vg7J3biNccf2eOLb1rX3yx/vXHuVXLNnbdCtTyPVlAdZwarXuyX4D/8CplgeCg==</source>
+  </file>
+  <file path="Number.php" generated-path="Number.html" hash="a505485e824535c18fa989a8c6e5f669" package="Default">
+    <docblock line="0">
+      <description>Created by PhpStorm.</description>
+      <long-description>User: Morten
+Date: 29-06-2017
+Time: 14:47</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Findforsikring\Support" line="16" package="Findforsikring\Support">
+      <extends/>
+      <name>Number</name>
+      <full_name>\Findforsikring\Support\Number</full_name>
+      <docblock line="16">
+        <description>Class Number</description>
+        <long-description></long-description>
+        <tag name="package" line="16" description="Findforsikring\Support"/>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Findforsikring\Support" line="25" package="Findforsikring\Support">
+        <name>formatDanishKroner</name>
+        <full_name>\Findforsikring\Support\Number::formatDanishKroner()</full_name>
+        <docblock line="25">
+          <description>Formats a float value as Danish currency</description>
+          <long-description></long-description>
+          <tag name="param" line="25" description="" type="" variable="$amount"/>
+          <tag name="param" line="25" description="" type="string" variable="$prefix">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="25" description="" type="null" variable="$postfix">
+            <type>null</type>
+          </tag>
+          <tag name="return" line="25" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$amount</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$prefix</name>
+          <default>'kr. '</default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$postfix</name>
+          <default>null</default>
+          <type>null</type>
+        </argument>
+      </method>
+    </class>
+    <source>eJx1UEtLAzEQvudXzKGw7dJuHxTFrVJB6UUUoXoTJN1m29DdJEwSsUj/u5PstpaCcxnmm/kezO3cbA0bpimDFB5QcCfWsNrD69YsncY6C/i7FZjDs0YnVJgf6SqHyc1gdDWYjMbXAXuTNWHjaT4N45AxxWthDS8ELKRalxqt3KFUm4+lN4akZoydfCtuLbz4eiUwzPdE2/HNf8yoX5xzfhhQRbVQKSwoOncWOJSV5g6+eOUFcEvRlbRbKDyiUMX+eE+OyGvo8Fp75S5Q64I7dAyKUn5fLJWvKlpp6853KJxH1TJbdBi78atKFrThjlrpVeGkVlDGwE26J9RKYLcN0z8awx0kO8wg6Z/8CAr+vajcPCFU6949Euc5JEkPMjoO7/pszP4MJn0SJdkki1fdk3xDnEXhAzv8Au3RpNk=</source>
+  </file>
+  <file path="Validator.php" generated-path="Validator.html" hash="aebbe1422c061fcbe1d96afe48ab4a20" package="Default">
+    <docblock line="0">
+      <description>Created by PhpStorm.</description>
+      <long-description>User: Morten
+Date: 26-06-2017
+Time: 11:55</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Findforsikring\Support" line="16" package="Findforsikring\Support">
+      <extends/>
+      <name>Validator</name>
+      <full_name>\Findforsikring\Support\Validator</full_name>
+      <docblock line="16">
+        <description>Class Validator</description>
+        <long-description></long-description>
+        <tag name="package" line="16" description="Findforsikring\Support"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="27" package="Findforsikring\Support">
+        <name>__construct</name>
+        <full_name>\Findforsikring\Support\Validator::__construct()</full_name>
+        <docblock line="27">
+          <description>Validator constructor.</description>
+          <long-description></long-description>
+          <tag name="param" line="27" description="" type="" variable="$value"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="35" package="Findforsikring\Support">
+        <name>isValidDomainName</name>
+        <full_name>\Findforsikring\Support\Validator::isValidDomainName()</full_name>
+        <docblock line="35">
+          <description>Check if domain name is valid</description>
+          <long-description></long-description>
+          <tag name="return" line="35" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="44" package="Findforsikring\Support">
+        <name>isRegisteredMailgunDomain</name>
+        <full_name>\Findforsikring\Support\Validator::isRegisteredMailgunDomain()</full_name>
+        <docblock line="44">
+          <description>Checks if the domain name is set up for Mailgun</description>
+          <long-description></long-description>
+          <tag name="return" line="44" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <source>eJydUstu2zAQvOsrFoEBS4b1sIGkrdMXEKO3BEXtFgXsVKAlWiIskQJJGUkDf07zDbn7x7qUFMWy0Ry6Fy1Xs7MzXL7/VKSF5Q8GFgzgSlKiaQyre/iaFjMtZO6Z+ndF5QSuhdSUm/MUURMYX7jBhTsORm9Mbc5yrI1Gk/NzPPqWxUlOVUEiCl8Yj9dCKraRjCfLWVkUSHVpWe3cjCgFP0jGYoJDTekzdm5I8q/makR01PZgAUbFaQJJtkRCzu7Q0pZkJQUtTGLgtMH41beQbIs16FUwVHZE1M6ASHClZRlh7rVjCiJJ3jR3ectVxiJYlzzSTHAIw7bfruFOLdpET6dMuR9rpR9aLebX7kTRVUqjDbA1xCInjIO5bWCqttcKk1SXksNKiOxVXUxVDqcV1w1S2U6FexHXMNmGysH7okmYEx2l9pn/y164xP0duO/2j/un/Z/bh/FwFAQ7Z+nZC/yx9Ezl7c7p+exs2LHpvGpPGX86pcceFdVQFoCvAq4Jy5KS/4fhbzRhSlNJ44ajNn9ivKfvdChpJGSscCsxV2FCnyv2oZkhTG9m4fznvHFlAjVSEqVgd2iIOqR1DqY9TzT7f0Es+pj3by87MLwb+2APfT+vfSw9IRO/P6wIHKfLfbBKfIW0y7izTrMGvCaZat/i7i+B5DaA</source>
+  </file>
+  <file path="functions.php" generated-path="functions.html" hash="5d99e55af9fe2f46653533368a646af1" package="Default">
+    <docblock line="0">
+      <description>Helper functions</description>
+      <long-description></long-description>
+      <tag name="global" line="0" description=""/>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <function namespace="" line="13" package="Default">
+      <name>is_assoc</name>
+      <full_name>\is_assoc()</full_name>
+      <docblock line="13">
+        <description>Checks if array is associative or not</description>
+        <long-description></long-description>
+        <tag name="package" line="13" description="Default"/>
+        <tag name="param" line="13" description="" type="array" variable="$array">
+          <type>array</type>
+        </tag>
+        <tag name="return" line="13" description="" type="boolean">
+          <type>boolean</type>
+        </tag>
+      </docblock>
+      <argument line="0" by_reference="false">
+        <name>$array</name>
+        <default></default>
+        <type>array</type>
+      </argument>
+    </function>
+    <function namespace="" line="27" package="Default">
+      <name>implode_danish_list</name>
+      <full_name>\implode_danish_list()</full_name>
+      <docblock line="27">
+        <description>Returns a string with the elements concatenated as:
+1 element: "Element1"
+2 elements: "Element1 og Element2"
+3 or more elements: "Element1, Element2 og Element3"</description>
+        <long-description></long-description>
+        <tag name="package" line="27" description="Default"/>
+        <tag name="param" line="27" description="" type="array" variable="$input">
+          <type>array</type>
+        </tag>
+        <tag name="return" line="27" description="" type="string">
+          <type>string</type>
+        </tag>
+      </docblock>
+      <argument line="0" by_reference="false">
+        <name>$input</name>
+        <default></default>
+        <type>array</type>
+      </argument>
+    </function>
+    <function namespace="" line="49" package="Default">
+      <name>ordinal_suffix</name>
+      <full_name>\ordinal_suffix()</full_name>
+      <docblock line="49">
+        <description>Adds an ordinal suffix to a number
+Examples: 1 =&gt; 1st, 2 =&gt; 2nd, 3 =&gt; 3rd</description>
+        <long-description></long-description>
+        <tag name="package" line="49" description="Default"/>
+        <tag name="param" line="49" description="" type="" variable="$number"/>
+        <tag name="return" line="49" description="" type="string">
+          <type>string</type>
+        </tag>
+      </docblock>
+      <argument line="0" by_reference="false">
+        <name>$number</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="67" package="Default">
+      <name>parse_danish_address</name>
+      <full_name>\parse_danish_address()</full_name>
+      <docblock line="67">
+        <description>Parses a danish address into these components (if possible)
+Street, Number, Letter, Floor, Door</description>
+        <long-description></long-description>
+        <tag name="package" line="67" description="Default"/>
+        <tag name="param" line="67" description="" type="" variable="$address"/>
+        <tag name="return" line="67" description="" type="array">
+          <type>array</type>
+        </tag>
+      </docblock>
+      <argument line="0" by_reference="false">
+        <name>$address</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="128" package="Default">
+      <name>sms</name>
+      <full_name>\sms()</full_name>
+      <docblock line="128">
+        <description>Sends and SMS to a Danish recipient</description>
+        <long-description></long-description>
+        <tag name="package" line="128" description="Default"/>
+        <tag name="param" line="128" description="&lt;p&gt;Phone number&lt;/p&gt;" type="string" variable="$recipient">
+          <type>string</type>
+        </tag>
+        <tag name="param" line="128" description="&lt;p&gt;Sender name to display to the recipient&#10;                      Max 11 characters, no spaces&lt;/p&gt;" type="string" variable="$sender">
+          <type>string</type>
+        </tag>
+        <tag name="param" line="128" description="&lt;p&gt;Plaintext message&#10;Use \r\n for newlines&lt;/p&gt;" type="" variable="$message"/>
+        <tag name="param" line="128" description="&lt;p&gt;Send as Flash SMS&#10;                   The SMS will be displayed in a modal and not stored in history&lt;/p&gt;" type="boolean" variable="$flash">
+          <type>boolean</type>
+        </tag>
+        <tag name="param" line="128" description="&lt;p&gt;Optional endpoint that will receive status updates&lt;/p&gt;" type="null" variable="$statusUrl">
+          <type>null</type>
+        </tag>
+        <tag name="param" line="128" description="&lt;p&gt;Optional return data which will be included in status updates&lt;/p&gt;" type="null" variable="$returnData">
+          <type>null</type>
+        </tag>
+        <tag name="todo" line="128" description="add validation rules"/>
+        <tag name="todo" line="128" description="add validation rules"/>
+        <tag name="todo" line="128" description="add validation rules"/>
+        <tag name="return" line="128" description="Return value indicates only if the SMS was accepted by the provider&#10;             To know whether or not it is received, use status URL and unique return data" type="boolean">
+          <type>boolean</type>
+        </tag>
+      </docblock>
+      <argument line="0" by_reference="false">
+        <name>$recipient</name>
+        <default></default>
+        <type>string</type>
+      </argument>
+      <argument line="0" by_reference="false">
+        <name>$sender</name>
+        <default></default>
+        <type>string</type>
+      </argument>
+      <argument line="0" by_reference="false">
+        <name>$message</name>
+        <default></default>
+        <type/>
+      </argument>
+      <argument line="0" by_reference="false">
+        <name>$flash</name>
+        <default>false</default>
+        <type>boolean</type>
+      </argument>
+      <argument line="0" by_reference="false">
+        <name>$statusUrl</name>
+        <default>null</default>
+        <type>null</type>
+      </argument>
+      <argument line="0" by_reference="false">
+        <name>$returnData</name>
+        <default>null</default>
+        <type>null</type>
+      </argument>
+    </function>
+    <function namespace="" line="145" package="Default">
+      <name>dump</name>
+      <full_name>\dump()</full_name>
+      <docblock line="145">
+        <description>Dumps a variable ot the browser as plaintext using print_r()</description>
+        <long-description></long-description>
+        <tag name="package" line="145" description="Default"/>
+        <tag name="param" line="145" description="" type="" variable="$variable"/>
+      </docblock>
+      <argument line="0" by_reference="false">
+        <name>$variable</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <function namespace="" line="161" package="Default">
+      <name>danish_holidays</name>
+      <full_name>\danish_holidays()</full_name>
+      <docblock line="161">
+        <description>Returns an associative array
+Key: Name of the holiday
+Value: Date string (Y-m-d), defaults to current year</description>
+        <long-description></long-description>
+        <tag name="package" line="161" description="Default"/>
+        <tag name="param" line="161" description="" type="null" variable="$year">
+          <type>null</type>
+        </tag>
+        <tag name="return" line="161" description="" type="array">
+          <type>array</type>
+        </tag>
+      </docblock>
+      <argument line="0" by_reference="false">
+        <name>$year</name>
+        <default>null</default>
+        <type>null</type>
+      </argument>
+    </function>
+    <function namespace="" line="197" package="Default">
+      <name>toDKK</name>
+      <full_name>\toDKK()</full_name>
+      <docblock line="197">
+        <description>Converts a number (float) into formatted Danish Kroner.</description>
+        <long-description>Default prefix is "kr. ".
+Example: 2759782.25 =&gt; "kr. 2.759.782,25".</long-description>
+        <tag name="package" line="197" description="Default"/>
+        <tag name="param" line="197" description="" type="float" variable="$number">
+          <type>float</type>
+        </tag>
+        <tag name="param" line="197" description="" type="string" variable="$prefix">
+          <type>string</type>
+        </tag>
+        <tag name="param" line="197" description="" type="null" variable="$postfix">
+          <type>null</type>
+        </tag>
+        <tag name="return" line="197" description="" type="string">
+          <type>string</type>
+        </tag>
+      </docblock>
+      <argument line="0" by_reference="false">
+        <name>$number</name>
+        <default></default>
+        <type>float</type>
+      </argument>
+      <argument line="0" by_reference="false">
+        <name>$prefix</name>
+        <default>'kr. '</default>
+        <type>string</type>
+      </argument>
+      <argument line="0" by_reference="false">
+        <name>$postfix</name>
+        <default>null</default>
+        <type>null</type>
+      </argument>
+    </function>
+    <markers>
+      <todo line="128">add validation rules</todo>
+      <todo line="128">add validation rules</todo>
+      <todo line="128">add validation rules</todo>
+    </markers>
+    <source>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</source>
+  </file>
+  <file path="SMS.php" generated-path="SMS.html" hash="4e20c0a1bf583e50ba16fb9e6ce9bcdc" package="Default">
+    <docblock line="0">
+      <description>Created by PhpStorm.</description>
+      <long-description>User: Morten
+Date: 23-06-2017
+Time: 14:51</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="Client">\GuzzleHttp\Client</namespace-alias>
+    <class final="false" abstract="false" namespace="Findforsikring\Support" line="18" package="Findforsikring\Support">
+      <extends/>
+      <name>SMS</name>
+      <full_name>\Findforsikring\Support\SMS</full_name>
+      <docblock line="18">
+        <description>Class SMS</description>
+        <long-description></long-description>
+        <tag name="package" line="18" description="Findforsikring\Support"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="68" package="Findforsikring\Support">
+        <name>__construct</name>
+        <full_name>\Findforsikring\Support\SMS::__construct()</full_name>
+        <docblock line="68">
+          <description>SMS constructor.</description>
+          <long-description></long-description>
+          <tag name="throws" line="68" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="81" package="Findforsikring\Support">
+        <name>send</name>
+        <full_name>\Findforsikring\Support\SMS::send()</full_name>
+        <docblock line="81">
+          <description>Hej
+Send the message</description>
+          <long-description></long-description>
+          <tag name="return" line="81" description="Whether or not the SMS was accepted by the provider" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="114" package="Findforsikring\Support">
+        <name>recipient</name>
+        <full_name>\Findforsikring\Support\SMS::recipient()</full_name>
+        <docblock line="114">
+          <description>Get or set recipient phone number</description>
+          <long-description></long-description>
+          <tag name="param" line="114" description="&lt;p&gt;Danish phone number&lt;/p&gt;" type="string" variable="$number">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="114" description="" type="\Findforsikring\Support\SMS">
+            <type>\Findforsikring\Support\SMS</type>
+          </tag>
+          <tag name="fluent" description="This method is part of a fluent interface and will return the same instance"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$number</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="132" package="Findforsikring\Support">
+        <name>sender</name>
+        <full_name>\Findforsikring\Support\SMS::sender()</full_name>
+        <docblock line="132">
+          <description>Set Sender name</description>
+          <long-description></long-description>
+          <tag name="param" line="132" description="&lt;p&gt;Max 11 characters, no spaces&lt;/p&gt;" type="string" variable="$name">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="132" description="" type="\Findforsikring\Support\SMS">
+            <type>\Findforsikring\Support\SMS</type>
+          </tag>
+          <tag name="fluent" description="This method is part of a fluent interface and will return the same instance"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$name</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="146" package="Findforsikring\Support">
+        <name>message</name>
+        <full_name>\Findforsikring\Support\SMS::message()</full_name>
+        <docblock line="146">
+          <description>Set the message</description>
+          <long-description></long-description>
+          <tag name="param" line="146" description="&lt;p&gt;SMS content&lt;/p&gt;" type="string" variable="$message">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="146" description="" type="\Findforsikring\Support\SMS">
+            <type>\Findforsikring\Support\SMS</type>
+          </tag>
+          <tag name="fluent" description="This method is part of a fluent interface and will return the same instance"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$message</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="160" package="Findforsikring\Support">
+        <name>statusUrl</name>
+        <full_name>\Findforsikring\Support\SMS::statusUrl()</full_name>
+        <docblock line="160">
+          <description>Set the status URL
+This URL will receive a POST requestwhen the SMS changes status
+Possible statuses: pending, received, rejected</description>
+          <long-description></long-description>
+          <tag name="param" line="160" description="&lt;p&gt;Endpoint for status updates&lt;/p&gt;" type="string" variable="$statusUrl">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="160" description="" type="\Findforsikring\Support\SMS">
+            <type>\Findforsikring\Support\SMS</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$statusUrl</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="173" package="Findforsikring\Support">
+        <name>returnData</name>
+        <full_name>\Findforsikring\Support\SMS::returnData()</full_name>
+        <docblock line="173">
+          <description>Get or set the return data
+This string will be included in status updates</description>
+          <long-description></long-description>
+          <tag name="param" line="173" description="&lt;p&gt;Unique identifier&lt;/p&gt;" type="string" variable="$returnData">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="173" description="" type="\Findforsikring\Support\SMS">
+            <type>\Findforsikring\Support\SMS</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$returnData</name>
+          <default></default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="184" package="Findforsikring\Support">
+        <name>flash</name>
+        <full_name>\Findforsikring\Support\SMS::flash()</full_name>
+        <docblock line="184">
+          <description>Send as Flash SMS</description>
+          <long-description></long-description>
+          <tag name="param" line="184" description="" type="boolean" variable="$flash">
+            <type>boolean</type>
+          </tag>
+          <tag name="return" line="184" description="" type="\Findforsikring\Support\SMS">
+            <type>\Findforsikring\Support\SMS</type>
+          </tag>
+          <tag name="fluent" description="This method is part of a fluent interface and will return the same instance"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$flash</name>
+          <default>true</default>
+          <type>boolean</type>
+        </argument>
+      </method>
+    </class>
+    <source>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</source>
+  </file>
+  <file path="VehicleService.php" generated-path="VehicleService.html" hash="dab81362fcf61fc73d1c92027d695ddf" package="Default">
+    <docblock line="0">
+      <description>Created by PhpStorm.</description>
+      <long-description>User: Morten
+Date: 23-06-2017
+Time: 14:40</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="Client">\Kameli\NummerpladeApi\Client</namespace-alias>
+    <class final="false" abstract="false" namespace="Findforsikring\Support" line="19" package="Findforsikring\Support">
+      <extends>\Kameli\NummerpladeApi\Client</extends>
+      <name>VehicleService</name>
+      <full_name>\Findforsikring\Support\VehicleService</full_name>
+      <docblock line="19">
+        <description>Class VehicleService</description>
+        <long-description></long-description>
+        <tag name="package" line="19" description="Findforsikring\Support"/>
+        <tag name="mixin" line="19" description="Client"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="25" package="Findforsikring\Support">
+        <name>__construct</name>
+        <full_name>\Findforsikring\Support\VehicleService::__construct()</full_name>
+        <docblock line="25">
+          <description>VehicleService constructor.</description>
+          <long-description></long-description>
+          <tag name="throws" line="25" description="" type="\Exception">
+            <type>\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <source>eJx1kG9LwzAQxt8X+h1OEdyK7o+KQie4sVUQ3RxO98ZKieltO9qmIWnnhvjdTVutQ/ReXe6e/J4nubySK2lbbcexLXBgqJBlGMLrFqYrOctSlbTKxZNG5cI4VRmKcjAyOhdOTo8758cnne5FOXykxAy7Z+5Zpzi3bcu2BEtQS8YRrkmEi1RpihSJpT/LpTS8XiGyrVwj3BppTP4kTxJUMmYhDiT5w5hQVLI6Zsy0hjmuiMc4Q7UmjuWib4witvzPq9IktCEBFfYrJv8DCLgxjw11rXw3YlNViKKc3zd4KnSmcm7+rVVr+tlKpW8afG/DUWaUiu9Vu2pk/hoTh0UueLGFIKg5jeaXaVG0gMYeU4ptgwi3AW5IZ7pxOHkaj72H6d1g5AWD6U3weH/rTQ6P4CDwJvPmLqCoMgwIfNvJ09j/kwGogKIIQbMMCFoo1vvN3g/u46eVTJkvct3d6KX/8z/xXr5BBvLxCaSUu6M=</source>
+  </file>
+  <file path="Converters.php" generated-path="Converters.html" hash="ec1f3f3bc129dd9048df372a31e8b197" package="Default">
+    <docblock line="0">
+      <description>Created by PhpStorm.</description>
+      <long-description>User: morten
+Date: 6/27/17
+Time: 8:50 PM</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="DOMDocument">\DOMDocument</namespace-alias>
+    <class final="false" abstract="false" namespace="Findforsikring\Support" line="18" package="Findforsikring\Support">
+      <extends/>
+      <name>Converters</name>
+      <full_name>\Findforsikring\Support\Converters</full_name>
+      <docblock line="18">
+        <description>Class Converters</description>
+        <long-description></long-description>
+        <tag name="package" line="18" description="Findforsikring\Support"/>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Findforsikring\Support" line="44" package="Findforsikring\Support">
+        <name>array2Xml</name>
+        <full_name>\Findforsikring\Support\Converters::array2Xml()</full_name>
+        <docblock line="44">
+          <description>Turns an associative array into xml
+Add a key named 'attr' to add attributes to the parent element
+Example:
+[
+   'div' =&gt; [
+      'attr' =&gt; [
+         'width' =&gt; '100%',
+         'height' =&gt; '50px',
+         'style' =&gt; 'color: red'
+      ],
+      'div' =&gt; [.</description>
+          <long-description>..]
+   ]
+]
+Results in
+&lt;div width="100%" height="50px" style="color: red"&gt;
+   &lt;div&gt;...&lt;/div&gt;
+&lt;/div&gt;</long-description>
+          <tag name="param" line="44" description="" type="array" variable="$array">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="44" description="" type="string" variable="$xmlVersion">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="44" description="" type="string" variable="$encoding">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="44" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$array</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$xmlVersion</name>
+          <default>"1.0"</default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$encoding</name>
+          <default>"utf-8"</default>
+          <type>string</type>
+        </argument>
+      </method>
+    </class>
+    <source>eJyNVW1v2zYQ/q5fcRC82Qkc2ynQtXBib0HSfetWrN0wIA0GRjpHnCVKICk1Xuv/3jvqJbRkA9MXk/fy3MN78/XPRVIE8/PzAM7hVqOwGMPjDj4kxUeb62zG8j8N6iVkubao+H5HVkv4af7qzfzyDQs+yYwEb5evF/DhPQnmQaBEhqYQEcKvUsWbXBu51VI9ff5YFgUhXQVBUBqEu9/f3+VRmaFiUUskFcbAba4qpJjasOwXAtuKp1N4LmrU9/saBECfg+WPqJZaGRAKyDKPpLCyQhBaix1IZXN4ztLW9CaOQcAWd8CPiWEsrNVjICPBGrrIx9KiYYlNEAqh6RWAKfJrWpR3zyIrUly29/v2QN84ltUYVusDIcvrSEMF677I2CZOOb5cLH4YT4cmCcqnxNY2rxfF8zEbY3cp1iZRnuZUYI3x+NDuoef3wnc2mz14uu7cHf5AU6bWUFJbyTU5gyO/Cpl4CDXNVcgUQ3CEVuELmXDtRWDvNUW9nvOhwzy4UYtokTXVHLmfnspY7hkYUZX/ov6QuTphgCrKYzp1ao2WOqfRN9K5+y3Kx1RGpKFeimBTqsgSbs3i1d9ZOvH5TP3YsILwcrYIpy/xWFTazcXb8MyBfw3agrEfaRV+8Wdm4sF5MGdXL346zy05Gkw3y6UoClQxs/L5+OZ0vVjXZreJTOOJAxhYKFoOIpX/YcfEM2mSRbnKJrW5ERVy1LPGaj8YzBsX0kDEQUHlMQ2Wxqikp1WY9gvZ5DQWVvQ0XnJI35x6Np/J6F09pt9UmaYwqme3X23P7rDkWla0A4c177Lr8ZseUPqx4zT14UnerA8qMTHqV58WHooogYmDpOUFoy0P4qg686xceTh1hNLFuVhHbq83kSajrVcp/uSGYAlttWoWTx/SVWoOd7ka2+aNtEF3NqFOm8K/pbFuI/IOPLkVBflEubJSlTgAZwbS/ONW8oSedIzAYRYqlwLey3UWRFriKS+XlZoGNSLam5bjxAFMW/ero977gXRPK57+uY4HOxGoul88cKD7y4cjcYYx2lQd2u4HdeOscaudytpg6qspeB3omqVH6OTzRhaf7bHO+kTy3wiISQwf52L0Vgoj9cMOe7KdiFUzE8c4dVPjwvzfl7RFOiB1LBfB8NTshgajXWf775U9e1s=</source>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="Findforsikring" full_name="Findforsikring">
+    <package name="Support" full_name="Findforsikring\Support"/>
+  </package>
+  <package name="global" full_name="global"/>
+  <namespace name="global" full_name="global"/>
+  <namespace name="Findforsikring" full_name="Findforsikring">
+    <namespace name="Support" full_name="Findforsikring\Support"/>
+  </namespace>
+  <deprecated count="0"/>
+</project>
