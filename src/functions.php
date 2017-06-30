@@ -129,12 +129,12 @@ if (!function_exists('parse_danish_address')) {
         {
             $sms = new \Findforsikring\Support\SMS();
             return $sms->recipient($recipient)
-                ->sender($sender)
-                ->message($message)
-                ->flash($flash)
-                ->statusUrl($statusUrl)
-                ->returnData($returnData)
-                ->send();
+                       ->sender($sender)
+                       ->message($message)
+                       ->flash($flash)
+                       ->statusUrl($statusUrl)
+                       ->returnData($returnData)
+                       ->send();
         }
 
         if (!function_exists('dump')) {
@@ -161,7 +161,7 @@ if (!function_exists('parse_danish_address')) {
         function danish_holidays($year = null)
         {
             if (is_null($year)) {
-                $year = (int)date('Y');
+                $year = (int) date('Y');
             }
             $dayLength = 24 * 60 * 60; // seconds
             $easter = mktime(0, 0, 0, 3, (21 + (easter_days($year))), $year);
@@ -195,8 +195,32 @@ if (!function_exists('parse_danish_address')) {
          * @return string
          */
         function toDKK($number, $prefix = 'kr. ', $postfix = null)
+        {
+            return \Findforsikring\Support\Number::formatDanishKroner($number, $prefix, $postfix);
+        }
+    }
+    if (!function_exists('array2xml')) {
+        /**
+         * Convert an associative array to xml
+         * @param array $array
+         * @param string $xmlVersion
+         * @param string $encoding
+         * @return string
+         */
+        function array2xml(array $array, $xmlVersion = "1.0", $encoding = "utf-8")
+        {
+            return \Findforsikring\Support\Converters::array2Xml($array, $xmlVersion, $encoding);
+        }
+    }
+    if (!function_exists('xml2array')) {
+        /**
+         * Convert an xml string into associative array
+         * @param $xml_string
+         * @return mixed
+         */
+        function xml2array($xml_string)
             {
-                return \Findforsikring\Support\Number::formatDanishKroner($number, $prefix, $postfix);
+                return \Findforsikring\Support\Converters::xml2Array($xml_string);
             }
         }
 }

@@ -51,6 +51,17 @@ class Converters
     }
 
     /**
+     * Convert an XML string to associative array
+     * @param $xml_string
+     * @return mixed
+     */
+    public static function xml2Array($xml_string)
+    {
+        $xml = simplexml_load_string($xml_string);
+        return json_decode(json_encode($xml), true);
+    }
+
+    /**
      * Appends child nodes recursively
      * @param array $data
      * @param DOMDocument $document
