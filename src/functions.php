@@ -232,9 +232,6 @@ if (!function_exists('emptyNotZero')) {
      */
     function emptyNotZero($var)
         {
-            if (is_numeric($var)){
-                return $var !== "0" && $var !== 0;
-            }
-            return empty($var);
+            return empty($var) && $var !== 0 && $var !== "0";
         }
     }
