@@ -224,3 +224,17 @@ if (!function_exists('parse_danish_address')) {
             }
         }
 }
+if (!function_exists('emptyNotZero')) {
+    /**
+     * Same as empty() except returns false for 0 and "0"
+     * @param $var
+     * @return bool
+     */
+    function emptyNotZero($var)
+        {
+            if (is_numeric($var)){
+                return $var !== "0" && $var !== 0;
+            }
+            return empty($var);
+        }
+    }

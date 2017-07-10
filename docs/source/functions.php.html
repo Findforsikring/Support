@@ -259,7 +259,21 @@ if (!function_exists('parse_danish_address')) {
                 return \Findforsikring\Support\Converters::xml2Array($xml_string);
             }
         }
-}</pre>
+}
+if (!function_exists('emptyNotZero')) {
+    /**
+     * Same as empty() except returns false for 0 and &quot;0&quot;
+     * @param $var
+     * @return bool
+     */
+    function emptyNotZero($var)
+        {
+            if (is_numeric($var)){
+                return $var != 0;
+            }
+            return empty($var);
+        }
+    }</pre>
         <script type="text/javascript">
              SyntaxHighlighter.all();
              jQuery('.gutter div').each(function(key, data){
