@@ -1,95 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project title="Findforsikring/Support" version="2.8.5">
   <partials/>
-  <file path="Converters.php" generated-path="Converters.html" hash="181acb290eeaaedd061f7f1425d49d24" package="Default">
-    <docblock line="0">
-      <description>Created by PhpStorm.</description>
-      <long-description>User: morten
-Date: 6/27/17
-Time: 8:50 PM</long-description>
-      <tag name="package" line="0" description="Default"/>
-    </docblock>
-    <namespace-alias name="DOMDocument">\DOMDocument</namespace-alias>
-    <class final="false" abstract="false" namespace="Findforsikring\Support" line="18" package="Findforsikring\Support">
-      <extends/>
-      <name>Converters</name>
-      <full_name>\Findforsikring\Support\Converters</full_name>
-      <docblock line="18">
-        <description>Class Converters</description>
-        <long-description></long-description>
-        <tag name="package" line="18" description="Findforsikring\Support"/>
-      </docblock>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Findforsikring\Support" line="44" package="Findforsikring\Support">
-        <name>array2Xml</name>
-        <full_name>\Findforsikring\Support\Converters::array2Xml()</full_name>
-        <docblock line="44">
-          <description>Turns an associative array into xml
-Add a key named 'attr' to add attributes to the parent element
-Example:
-[
-   'div' =&gt; [
-      'attr' =&gt; [
-         'width' =&gt; '100%',
-         'height' =&gt; '50px',
-         'style' =&gt; 'color: red'
-      ],
-      'div' =&gt; [.</description>
-          <long-description>..]
-   ]
-]
-Results in
-&lt;div width="100%" height="50px" style="color: red"&gt;
-   &lt;div&gt;...&lt;/div&gt;
-&lt;/div&gt;</long-description>
-          <tag name="param" line="44" description="" type="array" variable="$array">
-            <type>array</type>
-          </tag>
-          <tag name="param" line="44" description="" type="string" variable="$xmlVersion">
-            <type>string</type>
-          </tag>
-          <tag name="param" line="44" description="" type="string" variable="$encoding">
-            <type>string</type>
-          </tag>
-          <tag name="return" line="44" description="" type="string">
-            <type>string</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$array</name>
-          <default></default>
-          <type>array</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$xmlVersion</name>
-          <default>"1.0"</default>
-          <type>string</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$encoding</name>
-          <default>"utf-8"</default>
-          <type>string</type>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Findforsikring\Support" line="58" package="Findforsikring\Support">
-        <name>xml2Array</name>
-        <full_name>\Findforsikring\Support\Converters::xml2Array()</full_name>
-        <docblock line="58">
-          <description>Convert an XML string to associative array</description>
-          <long-description></long-description>
-          <tag name="param" line="58" description="" type="" variable="$xml_string"/>
-          <tag name="return" line="58" description="" type="mixed">
-            <type>mixed</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$xml_string</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-    </class>
-    <source>eJyNVdtu2zgQfddXDAzvWg4c2wnQbeHE3g2S9qlpi213USANAkYax6wlShAp1W7rf+8MdYluBqoXkXM5czgX8vLveBM7s5MTB07gOkFh0IfHPXzYxB9NlIRTlv+nMVlAGCUGFe9vyGoBf83OX87OXrLgkwxJ8GrxYg4fbkkwcxwlQtSx8BDeSOWvo0TLbSLV05ePaRwT0oXjOKlGuHl/exN5aYiKRSWRQGgN15HKkGImmmX/ENhWPB3Ds1G9tt8PxwH6LCx/RDVNlAahgCwjTwojMwSRJGIPUpkIdmFQml75PgjY4h74MD6MhDHJCMhIsIY28jE1qFliNgixSOgUgAHyaUqU1zsRxgEuyv1duaBv5MtsBMtVQ8jyPFJXwbpv0jcbqxydzed/jCZdkw3Kp43JbV7M412fjTb7AHMTLwoiKnCC/qhpd9/ye+Y7nU7va7pqXS3+RZ0GRlNSS8klOYMlvxww8QHkNJcDpjgAS2g5eCYzWNUisPeKol7OeFFhNnbUIokIi2oO7a+l0oZ7BoZU5f+pP2Skjhig8iKfVpU6QUOdU+gL6cz+4/QxkB5pqJc8WKfKM4Sbszj/HAZunc+kHhuWMDibzgeT53gsSs369NVgbMF/OGXB2I+0Cr/VZ8atwdVgxhfPfkkUGXLUGKwXCxHHqHxmVedTN6ft6So3u97IwHctQMdC0eUgAvkdKyY1kyJZlKvQzc21yJCjjgurQ2cwi6nl0fx8+7YsBA9be1BbJeMAD426VNUK5Q793ykWQZxfMbZbQztSAS15ntksiIRf2Db8Oon4qiP14CPVBl27tnVC6zSeUJ5SPJqXK1sKDR4XAxS5aYL1Uip5hkE7GUWv+cKIlqbWNKQvVi2bL2T0Or++fqo0CGCY32ntvNbsmtlNZEZvQ3cWqq6r8Zs0KP1ZcZrU4UleXKvU+sSoXRN6CFB4G3AtJPUKDLd8QQ2zcc3KVo9TRyhVnNOVZ9+7IpI73NYKx59cEyyhLZfFhdyGtJWawU2kRqY4I7Xv3myoCSbwNdXGvhT8Nhx9LQT5eJEyUqXYAWcGUj/YCXDpSH0EmlnIbAr4vcqzIAJqrSNeNis5DRpQNFclR9cCTEr3i17vQ0d6oKePXvT+YEcCZXfzew50d3bfE6cbo0xV0/bQqRtnLZ/n/qx1bsNsArUOtM3SInT0eEODO9PXWZ9I/s7OedZzOBujddUyUjtstyfLiVgWM9HHqZoaG+Z3T1IWqUGqLxdOd1XcDQVGeZ0dfgE/QdFp</source>
-  </file>
   <file path="DateTime.php" generated-path="DateTime.html" hash="e52fd691a7707483ed0cc071d23a4173" package="Default">
     <docblock line="0">
       <description>Created by PhpStorm.</description>
@@ -236,7 +147,116 @@ Otherwise return this</description>
     </class>
     <source>eJytVltv2zYUfjfg/3BgOJCVxnGdANtgN12zOG2MxcmwJBiGpghoibIYU6RAUnHTLv+r7/1jO9TFF8m5eJ1eKB2d2/edc0i++TUO43qts71dr8E2HClKDPVhfA9/hPGFkSraTX9caap6MJLKUJEKBqjXg7399uuf2nuvuz+nwksWobC73+vu2e9OvVavCRJRHROPwnsm/EAqzaaKicn1RRLH6K9vleq1RFM4ImosxXW2pPIirxPKYw2eFHdUGTQGH8NrIMIHgzE1MGEk5iSYDgEx+GTMKWhjA2nrIfXyDtOYksljmeQpe5xoneKzcIB+Rsi+zpOr176iGj6d7WxFt++RJWIwO5/qQtjJXjBjbWBweHl8Mzg8G16c3FycnP95CQfQ2KK7sPVbo/+Y4uh4MLwapZqH4KPuM/qn52cfytqw9XfV4HI4eiYITDkuJ72tUSOtQoZ3AfjMlhRkUBA+o3Tqk/s5eHh3RxQQpch9iY9YSUM922HaEMM8aPqpi79yD5jJx9wEH0d//yZ8MnF2lmQRqYgMU7osQ7gVNVlVCxQti/j3b2pJ9ulFFERSmPAHCBil9iX4t0QkRK3mS8eqLIuIMnpFQmLFeEnnduX7NhGsJOCrApJMEm1WRJrGhkZjuhpeTo0sy4S8qyr61FsRrmf2AzVFQ+UDjMOd07zgV1GTKJErlDlOxhyZDRLhGSYFTKgZLHdZy830vi5ym7uzNen1Sl35sWlCpttvg3TQW87McT/lY/XwGIS0If5vAGmXvDj9rKfKyQvHhTZ0nwQwDMAapbss4CqkAVJUZacIZ0IKgeRczizG/O/cxzn+VjOG2/pcnek1+G3K/4iE8+dJOMO9+PEasgBaOVam52ruksYSValif/HrYfHa6cB8OyKKgqB46GA98dWERMA+ZL9mc7D4ILsYneEAd/uA65sD2Lcvr165UMqg6eEOxlJqD6Al6CwnIUveddtvie8PMAT6c/urtinGuf2TQJfBzi1K7h7WEpBb2Zo81ST5sUd0sQfaAIsCx0SRqBiAprmP6X9rfiMz9/ZAbqV+kDYnoj5LIqfaBZoaLj3Caev06MYedTu48ZCbwe+7iQl+cZYJ1TNmvBAyp2X6PIKd6+gQ7wVOr8psMxsnTKUYusoh369ajfFqMu2vC5Tj2ThSdoBvFIpLMdk8kL1evDCMTwOScLMmhAmVnIFt+euhuCOc+YdqkkRUmOPPHh4uWO9W40pMhZwJyNLpZb3TcNcP6/I4F3vcqa0/+0L9Vg7J3biNccf2eOLb1rX3yx/vXHuVXLNnbdCtTyPVlAdZwarXuyX4D/8CplgeCg==</source>
   </file>
-  <file path="functions.php" generated-path="functions.html" hash="007e0cdd325b20ff2d9e90684dee0873" package="Default">
+  <file path="Number.php" generated-path="Number.html" hash="a505485e824535c18fa989a8c6e5f669" package="Default">
+    <docblock line="0">
+      <description>Created by PhpStorm.</description>
+      <long-description>User: Morten
+Date: 29-06-2017
+Time: 14:47</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Findforsikring\Support" line="16" package="Findforsikring\Support">
+      <extends/>
+      <name>Number</name>
+      <full_name>\Findforsikring\Support\Number</full_name>
+      <docblock line="16">
+        <description>Class Number</description>
+        <long-description></long-description>
+        <tag name="package" line="16" description="Findforsikring\Support"/>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Findforsikring\Support" line="25" package="Findforsikring\Support">
+        <name>formatDanishKroner</name>
+        <full_name>\Findforsikring\Support\Number::formatDanishKroner()</full_name>
+        <docblock line="25">
+          <description>Formats a float value as Danish currency</description>
+          <long-description></long-description>
+          <tag name="param" line="25" description="" type="" variable="$amount"/>
+          <tag name="param" line="25" description="" type="string" variable="$prefix">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="25" description="" type="null" variable="$postfix">
+            <type>null</type>
+          </tag>
+          <tag name="return" line="25" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$amount</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$prefix</name>
+          <default>'kr. '</default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$postfix</name>
+          <default>null</default>
+          <type>null</type>
+        </argument>
+      </method>
+    </class>
+    <source>eJx1UEtLAzEQvudXzKGw7dJuHxTFrVJB6UUUoXoTJN1m29DdJEwSsUj/u5PstpaCcxnmm/kezO3cbA0bpimDFB5QcCfWsNrD69YsncY6C/i7FZjDs0YnVJgf6SqHyc1gdDWYjMbXAXuTNWHjaT4N45AxxWthDS8ELKRalxqt3KFUm4+lN4akZoydfCtuLbz4eiUwzPdE2/HNf8yoX5xzfhhQRbVQKSwoOncWOJSV5g6+eOUFcEvRlbRbKDyiUMX+eE+OyGvo8Fp75S5Q64I7dAyKUn5fLJWvKlpp6853KJxH1TJbdBi78atKFrThjlrpVeGkVlDGwE26J9RKYLcN0z8awx0kO8wg6Z/8CAr+vajcPCFU6949Euc5JEkPMjoO7/pszP4MJn0SJdkki1fdk3xDnEXhAzv8Au3RpNk=</source>
+  </file>
+  <file path="Validator.php" generated-path="Validator.html" hash="aebbe1422c061fcbe1d96afe48ab4a20" package="Default">
+    <docblock line="0">
+      <description>Created by PhpStorm.</description>
+      <long-description>User: Morten
+Date: 26-06-2017
+Time: 11:55</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="Findforsikring\Support" line="16" package="Findforsikring\Support">
+      <extends/>
+      <name>Validator</name>
+      <full_name>\Findforsikring\Support\Validator</full_name>
+      <docblock line="16">
+        <description>Class Validator</description>
+        <long-description></long-description>
+        <tag name="package" line="16" description="Findforsikring\Support"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="27" package="Findforsikring\Support">
+        <name>__construct</name>
+        <full_name>\Findforsikring\Support\Validator::__construct()</full_name>
+        <docblock line="27">
+          <description>Validator constructor.</description>
+          <long-description></long-description>
+          <tag name="param" line="27" description="" type="" variable="$value"/>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="35" package="Findforsikring\Support">
+        <name>isValidDomainName</name>
+        <full_name>\Findforsikring\Support\Validator::isValidDomainName()</full_name>
+        <docblock line="35">
+          <description>Check if domain name is valid</description>
+          <long-description></long-description>
+          <tag name="return" line="35" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="44" package="Findforsikring\Support">
+        <name>isRegisteredMailgunDomain</name>
+        <full_name>\Findforsikring\Support\Validator::isRegisteredMailgunDomain()</full_name>
+        <docblock line="44">
+          <description>Checks if the domain name is set up for Mailgun</description>
+          <long-description></long-description>
+          <tag name="return" line="44" description="" type="boolean">
+            <type>boolean</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+    <source>eJydUstu2zAQvOsrFoEBS4b1sIGkrdMXEKO3BEXtFgXsVKAlWiIskQJJGUkDf07zDbn7x7qUFMWy0Ry6Fy1Xs7MzXL7/VKSF5Q8GFgzgSlKiaQyre/iaFjMtZO6Z+ndF5QSuhdSUm/MUURMYX7jBhTsORm9Mbc5yrI1Gk/NzPPqWxUlOVUEiCl8Yj9dCKraRjCfLWVkUSHVpWe3cjCgFP0jGYoJDTekzdm5I8q/makR01PZgAUbFaQJJtkRCzu7Q0pZkJQUtTGLgtMH41beQbIs16FUwVHZE1M6ASHClZRlh7rVjCiJJ3jR3ectVxiJYlzzSTHAIw7bfruFOLdpET6dMuR9rpR9aLebX7kTRVUqjDbA1xCInjIO5bWCqttcKk1SXksNKiOxVXUxVDqcV1w1S2U6FexHXMNmGysH7okmYEx2l9pn/y164xP0duO/2j/un/Z/bh/FwFAQ7Z+nZC/yx9Ezl7c7p+exs2LHpvGpPGX86pcceFdVQFoCvAq4Jy5KS/4fhbzRhSlNJ44ajNn9ivKfvdChpJGSscCsxV2FCnyv2oZkhTG9m4fznvHFlAjVSEqVgd2iIOqR1DqY9TzT7f0Es+pj3by87MLwb+2APfT+vfSw9IRO/P6wIHKfLfbBKfIW0y7izTrMGvCaZat/i7i+B5DaA</source>
+  </file>
+  <file path="functions.php" generated-path="functions.html" hash="a8c8a560b45e33d9996c7b9f331aebea" package="Default">
     <docblock line="0">
       <description>Helper functions</description>
       <long-description></long-description>
@@ -513,65 +533,30 @@ Example: 2759782.25 =&gt; "kr. 2.759.782,25".</long-description>
         <type/>
       </argument>
     </function>
+    <function namespace="" line="233" package="Default">
+      <name>emptyNotZero</name>
+      <full_name>\emptyNotZero()</full_name>
+      <docblock line="233">
+        <description>Same as empty() except returns false for 0 and "0"</description>
+        <long-description></long-description>
+        <tag name="package" line="233" description="Default"/>
+        <tag name="param" line="233" description="" type="" variable="$var"/>
+        <tag name="return" line="233" description="" type="boolean">
+          <type>boolean</type>
+        </tag>
+      </docblock>
+      <argument line="0" by_reference="false">
+        <name>$var</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
     <markers>
       <todo line="128">add validation rules</todo>
       <todo line="128">add validation rules</todo>
       <todo line="128">add validation rules</todo>
     </markers>
-    <source>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</source>
-  </file>
-  <file path="Number.php" generated-path="Number.html" hash="a505485e824535c18fa989a8c6e5f669" package="Default">
-    <docblock line="0">
-      <description>Created by PhpStorm.</description>
-      <long-description>User: Morten
-Date: 29-06-2017
-Time: 14:47</long-description>
-      <tag name="package" line="0" description="Default"/>
-    </docblock>
-    <class final="false" abstract="false" namespace="Findforsikring\Support" line="16" package="Findforsikring\Support">
-      <extends/>
-      <name>Number</name>
-      <full_name>\Findforsikring\Support\Number</full_name>
-      <docblock line="16">
-        <description>Class Number</description>
-        <long-description></long-description>
-        <tag name="package" line="16" description="Findforsikring\Support"/>
-      </docblock>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="Findforsikring\Support" line="25" package="Findforsikring\Support">
-        <name>formatDanishKroner</name>
-        <full_name>\Findforsikring\Support\Number::formatDanishKroner()</full_name>
-        <docblock line="25">
-          <description>Formats a float value as Danish currency</description>
-          <long-description></long-description>
-          <tag name="param" line="25" description="" type="" variable="$amount"/>
-          <tag name="param" line="25" description="" type="string" variable="$prefix">
-            <type>string</type>
-          </tag>
-          <tag name="param" line="25" description="" type="null" variable="$postfix">
-            <type>null</type>
-          </tag>
-          <tag name="return" line="25" description="" type="string">
-            <type>string</type>
-          </tag>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$amount</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$prefix</name>
-          <default>'kr. '</default>
-          <type>string</type>
-        </argument>
-        <argument line="0" by_reference="false">
-          <name>$postfix</name>
-          <default>null</default>
-          <type>null</type>
-        </argument>
-      </method>
-    </class>
-    <source>eJx1UEtLAzEQvudXzKGw7dJuHxTFrVJB6UUUoXoTJN1m29DdJEwSsUj/u5PstpaCcxnmm/kezO3cbA0bpimDFB5QcCfWsNrD69YsncY6C/i7FZjDs0YnVJgf6SqHyc1gdDWYjMbXAXuTNWHjaT4N45AxxWthDS8ELKRalxqt3KFUm4+lN4akZoydfCtuLbz4eiUwzPdE2/HNf8yoX5xzfhhQRbVQKSwoOncWOJSV5g6+eOUFcEvRlbRbKDyiUMX+eE+OyGvo8Fp75S5Q64I7dAyKUn5fLJWvKlpp6853KJxH1TJbdBi78atKFrThjlrpVeGkVlDGwE26J9RKYLcN0z8awx0kO8wg6Z/8CAr+vajcPCFU6949Euc5JEkPMjoO7/pszP4MJn0SJdkki1fdk3xDnEXhAzv8Au3RpNk=</source>
+    <source>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</source>
   </file>
   <file path="SMS.php" generated-path="SMS.html" hash="4e20c0a1bf583e50ba16fb9e6ce9bcdc" package="Default">
     <docblock line="0">
@@ -738,62 +723,6 @@ This string will be included in status updates</description>
     </class>
     <source>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</source>
   </file>
-  <file path="Validator.php" generated-path="Validator.html" hash="aebbe1422c061fcbe1d96afe48ab4a20" package="Default">
-    <docblock line="0">
-      <description>Created by PhpStorm.</description>
-      <long-description>User: Morten
-Date: 26-06-2017
-Time: 11:55</long-description>
-      <tag name="package" line="0" description="Default"/>
-    </docblock>
-    <class final="false" abstract="false" namespace="Findforsikring\Support" line="16" package="Findforsikring\Support">
-      <extends/>
-      <name>Validator</name>
-      <full_name>\Findforsikring\Support\Validator</full_name>
-      <docblock line="16">
-        <description>Class Validator</description>
-        <long-description></long-description>
-        <tag name="package" line="16" description="Findforsikring\Support"/>
-      </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="27" package="Findforsikring\Support">
-        <name>__construct</name>
-        <full_name>\Findforsikring\Support\Validator::__construct()</full_name>
-        <docblock line="27">
-          <description>Validator constructor.</description>
-          <long-description></long-description>
-          <tag name="param" line="27" description="" type="" variable="$value"/>
-        </docblock>
-        <argument line="0" by_reference="false">
-          <name>$value</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="35" package="Findforsikring\Support">
-        <name>isValidDomainName</name>
-        <full_name>\Findforsikring\Support\Validator::isValidDomainName()</full_name>
-        <docblock line="35">
-          <description>Check if domain name is valid</description>
-          <long-description></long-description>
-          <tag name="return" line="35" description="" type="boolean">
-            <type>boolean</type>
-          </tag>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="Findforsikring\Support" line="44" package="Findforsikring\Support">
-        <name>isRegisteredMailgunDomain</name>
-        <full_name>\Findforsikring\Support\Validator::isRegisteredMailgunDomain()</full_name>
-        <docblock line="44">
-          <description>Checks if the domain name is set up for Mailgun</description>
-          <long-description></long-description>
-          <tag name="return" line="44" description="" type="boolean">
-            <type>boolean</type>
-          </tag>
-        </docblock>
-      </method>
-    </class>
-    <source>eJydUstu2zAQvOsrFoEBS4b1sIGkrdMXEKO3BEXtFgXsVKAlWiIskQJJGUkDf07zDbn7x7qUFMWy0Ry6Fy1Xs7MzXL7/VKSF5Q8GFgzgSlKiaQyre/iaFjMtZO6Z+ndF5QSuhdSUm/MUURMYX7jBhTsORm9Mbc5yrI1Gk/NzPPqWxUlOVUEiCl8Yj9dCKraRjCfLWVkUSHVpWe3cjCgFP0jGYoJDTekzdm5I8q/makR01PZgAUbFaQJJtkRCzu7Q0pZkJQUtTGLgtMH41beQbIs16FUwVHZE1M6ASHClZRlh7rVjCiJJ3jR3ectVxiJYlzzSTHAIw7bfruFOLdpET6dMuR9rpR9aLebX7kTRVUqjDbA1xCInjIO5bWCqttcKk1SXksNKiOxVXUxVDqcV1w1S2U6FexHXMNmGysH7okmYEx2l9pn/y164xP0duO/2j/un/Z/bh/FwFAQ7Z+nZC/yx9Ezl7c7p+exs2LHpvGpPGX86pcceFdVQFoCvAq4Jy5KS/4fhbzRhSlNJ44ajNn9ivKfvdChpJGSscCsxV2FCnyv2oZkhTG9m4fznvHFlAjVSEqVgd2iIOqR1DqY9TzT7f0Es+pj3by87MLwb+2APfT+vfSw9IRO/P6wIHKfLfbBKfIW0y7izTrMGvCaZat/i7i+B5DaA</source>
-  </file>
   <file path="VehicleService.php" generated-path="VehicleService.html" hash="dab81362fcf61fc73d1c92027d695ddf" package="Default">
     <docblock line="0">
       <description>Created by PhpStorm.</description>
@@ -826,6 +755,95 @@ Time: 14:40</long-description>
       </method>
     </class>
     <source>eJx1kG9LwzAQxt8X+h1OEdyK7o+KQie4sVUQ3RxO98ZKieltO9qmIWnnhvjdTVutQ/ReXe6e/J4nubySK2lbbcexLXBgqJBlGMLrFqYrOctSlbTKxZNG5cI4VRmKcjAyOhdOTo8758cnne5FOXykxAy7Z+5Zpzi3bcu2BEtQS8YRrkmEi1RpihSJpT/LpTS8XiGyrVwj3BppTP4kTxJUMmYhDiT5w5hQVLI6Zsy0hjmuiMc4Q7UmjuWib4witvzPq9IktCEBFfYrJv8DCLgxjw11rXw3YlNViKKc3zd4KnSmcm7+rVVr+tlKpW8afG/DUWaUiu9Vu2pk/hoTh0UueLGFIKg5jeaXaVG0gMYeU4ptgwi3AW5IZ7pxOHkaj72H6d1g5AWD6U3weH/rTQ6P4CDwJvPmLqCoMgwIfNvJ09j/kwGogKIIQbMMCFoo1vvN3g/u46eVTJkvct3d6KX/8z/xXr5BBvLxCaSUu6M=</source>
+  </file>
+  <file path="Converters.php" generated-path="Converters.html" hash="0d8f3c018befd0d91f8be111f3484b9e" package="Default">
+    <docblock line="0">
+      <description>Created by PhpStorm.</description>
+      <long-description>User: morten
+Date: 6/27/17
+Time: 8:50 PM</long-description>
+      <tag name="package" line="0" description="Default"/>
+    </docblock>
+    <namespace-alias name="DOMDocument">\DOMDocument</namespace-alias>
+    <class final="false" abstract="false" namespace="Findforsikring\Support" line="18" package="Findforsikring\Support">
+      <extends/>
+      <name>Converters</name>
+      <full_name>\Findforsikring\Support\Converters</full_name>
+      <docblock line="18">
+        <description>Class Converters</description>
+        <long-description></long-description>
+        <tag name="package" line="18" description="Findforsikring\Support"/>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Findforsikring\Support" line="44" package="Findforsikring\Support">
+        <name>array2Xml</name>
+        <full_name>\Findforsikring\Support\Converters::array2Xml()</full_name>
+        <docblock line="44">
+          <description>Turns an associative array into xml
+Add a key named 'attr' to add attributes to the parent element
+Example:
+[
+   'div' =&gt; [
+      'attr' =&gt; [
+         'width' =&gt; '100%',
+         'height' =&gt; '50px',
+         'style' =&gt; 'color: red'
+      ],
+      'div' =&gt; [.</description>
+          <long-description>..]
+   ]
+]
+Results in
+&lt;div width="100%" height="50px" style="color: red"&gt;
+   &lt;div&gt;...&lt;/div&gt;
+&lt;/div&gt;</long-description>
+          <tag name="param" line="44" description="" type="array" variable="$array">
+            <type>array</type>
+          </tag>
+          <tag name="param" line="44" description="" type="string" variable="$xmlVersion">
+            <type>string</type>
+          </tag>
+          <tag name="param" line="44" description="" type="string" variable="$encoding">
+            <type>string</type>
+          </tag>
+          <tag name="return" line="44" description="" type="string">
+            <type>string</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$array</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$xmlVersion</name>
+          <default>"1.0"</default>
+          <type>string</type>
+        </argument>
+        <argument line="0" by_reference="false">
+          <name>$encoding</name>
+          <default>"utf-8"</default>
+          <type>string</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Findforsikring\Support" line="95" package="Findforsikring\Support">
+        <name>xml2Array</name>
+        <full_name>\Findforsikring\Support\Converters::xml2Array()</full_name>
+        <docblock line="95">
+          <description>Convert an XML string to associative array</description>
+          <long-description></long-description>
+          <tag name="param" line="95" description="" type="" variable="$xml_string"/>
+          <tag name="return" line="95" description="" type="mixed">
+            <type>mixed</type>
+          </tag>
+        </docblock>
+        <argument line="0" by_reference="false">
+          <name>$xml_string</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <source>eJyNVttu20YQfedXDAS1kgxZkg2kCWRLrWEnT3UaNGkRwDGMNTkyNyKXBHfJSE30751ZXsSLCIQvXM7lzNmZ2Vle/x77sTM/O3PgDG4TFAY9eN7DBz/+aKIknLH8H43JEsIoMaj4+46slvDb/PL1/OI1Cz7JkARvlq8W8OGeBHPHUSJEHQsX4Z1U3iZKtNwmUr18+ZjGMSFdOY6TaoS7v+7vIjcNUbGoJBIIreE2UhlSzESz7A8C24qXPjwb1W37fXccoMfC8kNU00RpEArIMnKlMDJDEEki9iCViWAXBqXpjeeBgC3ugTfjwUgYk4yAjARr6EM+pwY1S4yPEIuEdgEYIO+mRHm7E2Ec4LL8figX9Iw8mY1gtW4IWZ5H6ipY9016xrfK0cVi8cto2jXxUb74Jrd5tYh3p2y02QeYm7hREFGBE/RGTbvHlt+R72w2e6zpqnW1+Bt1GhhNSS0l1+QMlvxqwMQHkNNcDZjiACyh1eBIZrCuRWDvNUW9nvOiwmx8UYskIiyqObSvlkob7hkYUpX/pf6QkeoxQOVGHq0qdYKGOqfQF9K5fcfpcyBd0lAvubBJlWsIN2dx+TkMxnU+03psWMHgYrYYTI/xWJSazfmbwcSCf3fKgrEfaRV+q5+ZcQ2uBjO5OvolUWTIUWOwWS5FHKPymFWdT92cPs/XudmtLwNvbAE6FoqGgwjkf1gxqZkUyaJchePcXIsMOeqksDp0DuaNDanB5aCgIo8OVoJuSlvLMGgXssipJ4xoaWrJIX2xatl8IaO3+TH9odIggGF+dtvVrtk1S57IjGZgt+ZVdmv8pg1Kv1acpnV4khfjg0pMjNrVp4GHwvVhbCFpeMFwywdxmE1qVrY8nDpCqeKcr10714tI4+G2Vil+5IZgCW21KgZPG9JWag53kRqZYo80QffGp06bwtdUGzsReQb2TkVBPm6kjFQpdsCZgdRPdiSPaUunCDSzkNkU8FzOsyCCFPu8bFZyGtSIaG5KjmMLMC3dr056HzrSA414urlOB+sJlD0sHjnQw8XjiTjdGGWqmraHTt04a9xqfVnrnPpsCrUOtM3SItS7vaHBnTnVWZ9I/p6AmER3czZGa6QwUjtstyfLE7EqzsQpTtWpsWF+didlkRqkTuXC6a6K2VBg9I2z4ieE/zQ+3/9Z3iv879D+72jNJp6XT41rphpHodyh9zN3D0Fc3uRtcUTruVC05N8TNgsi4RW2Db/OXP+qI/Xkocslt2t77aB1mkxp7FeH6eAc/gdRwNFp</source>
   </file>
   <package name="Default" full_name="Default"/>
   <package name="Findforsikring" full_name="Findforsikring">
