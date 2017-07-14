@@ -78,6 +78,7 @@ class DateTimeTest extends \PHPUnit\Framework\TestCase
     {
         $tests = [
             ['2017-07-14 14:30:00', 4, '2017-07-17 10:30:00'],
+            ['2017-07-14 20:00:00', 4, '2017-07-17 12:00:00']
         ];
         foreach ($tests as $test) {
             $from = new DateTime($test[0]);

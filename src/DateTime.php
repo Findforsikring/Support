@@ -161,7 +161,7 @@ class DateTime extends Carbon
                 return false;
             }
             if ($dt->hour == $fromHour){
-                return $dt->minute <= $toMinute;
+                return $dt->minute >= $fromMinute;
             }
             if ($dt->hour > $toHour){
                 return false;
