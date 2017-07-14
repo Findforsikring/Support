@@ -73,4 +73,16 @@ class DateTimeTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($datetime->toDanishDate('long'), $expectedLong);
         $this->assertEquals($datetime->toDanishDateTime(), $expectedWithTime);
     }
+
+    public function testBusinessHours()
+    {
+        $tests = [
+            ['2017-07-14 14:30:00', 4, '2017-07-17 10:30:00'],
+        ];
+        foreach ($tests as $test) {
+            $from = new DateTime($test[0]);
+            $to = $from->addBusinessHours($test[1]);
+            $this->assertEquals($to->format("Y-m-d H:i:s"), $test[2]);
+        }
+    }
 }
