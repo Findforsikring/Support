@@ -92,9 +92,49 @@ class Converters
      * @param $xml_string
      * @return mixed
      */
-    public static function xml2Array($xml_string)
+    public static function xml2Array($xml, $sxclass = 'SimpleXMLElement', $nsattr = false, $flags = null)
     {
-        $xml = simplexml_load_string($xml_string);
-        return json_decode(json_encode($xml), true);
+        // Validate arguments first
+        if(!is_string($sxclass) or empty($sxclass) or !class_exists($sxclass)){
+            trigger_error('$sxclass must be a SimpleXMLElement or a derived class.', E_USER_WARNING);
+            return false;
+        }
+        if(!is_string($xml) or empty($xml)){
+            trigger_error('$xml must be a non-empty string.', E_USER_WARNING);
+            return false;
+        }
+        // Load XML if URL is provided as XML
+        if(preg_match('~^https?://[^\s]+$~i', $xml) || file_exists($xml)){
+            $xml = file_get_contents($xml);
+        }
+        // Let's drop namespace definitions
+        if(stripos($xml, 'xmlns=') !== false){
+            $xml = preg_replace('~[\s]+xmlns=[\'"].+?[\'"]~i', null, $xml);
+        }
+        // I know this looks kind of funny but it changes namespaced attributes
+        if(preg_match_all('~xmlns:([a-z0-9]+)=~i', $xml, $matches)){
+            foreach(($namespaces = array_unique($matches[1])) as $namespace){
+                $escaped_namespace = preg_quote($namespace, '~');
+                $xml = preg_replace('~[\s]xmlns:'.$escaped_namespace.'=[\'].+?[\']~i', null, $xml);
+                $xml = preg_replace('~[\s]xmlns:'.$escaped_namespace.'=["].+?["]~i', null, $xml);
+                $xml = preg_replace('~([\'"\s])'.$escaped_namespace.':~i', '$1'.$namespace.'_', $xml);
+            }
+        }
+        // Let's change <namespace:tag to <namespace_tag ns="namespace"
+        $regexfrom = sprintf('~<([a-z0-9]+):%s~is', !empty($nsattr) ? '([a-z0-9]+)' : null);
+        $regexto = strlen($nsattr) ? '<$1_$2 '.$nsattr.'="$1"' : '<$1_';
+        $xml = preg_replace($regexfrom, $regexto, $xml);
+        // Let's change </namespace:tag> to </namespace_tag>
+        $xml = preg_replace('~</([a-z0-9]+):~is', '</$1_', $xml);
+        // Default flags I use
+        if(empty($flags)) $flags = LIBXML_COMPACT | LIBXML_NOBLANKS | LIBXML_NOCDATA;
+        // Now load and return (namespaceless)
+        return $xml = simplexml_load_string($xml, $sxclass, $flags);
     }
+
+    public static function xml2ArrayStripNamespaces($xml, $sxclass = 'SimpleXMLElement', $nsattr = false, $flags = null){
+
+    }
+
+
 }
