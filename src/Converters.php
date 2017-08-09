@@ -130,7 +130,7 @@ class Converters
         if(empty($flags)) $flags = LIBXML_COMPACT | LIBXML_NOBLANKS | LIBXML_NOCDATA;
         // Now load and return (namespaceless)
         $xml = simplexml_load_string($xml, $sxclass, $flags);
-        return \GuzzleHttp\json_decode(\GuzzleHttp\json_encode($xml));
+        return \GuzzleHttp\json_decode(\GuzzleHttp\json_encode($xml), true);
     }
 
     public static function xml2ArrayStripNamespaces($xml, $sxclass = 'SimpleXMLElement', $nsattr = false, $flags = null){
