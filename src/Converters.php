@@ -122,10 +122,10 @@ class Converters
         }
         // Let's change <namespace:tag to <namespace_tag ns="namespace"
         $regexfrom = sprintf('~<([a-z0-9]+):%s~is', !empty($nsattr) ? '([a-z0-9]+)' : null);
-        $regexto = strlen($nsattr) ? '<$1_$2 '.$nsattr.'="$1"' : '<$1_';
+        $regexto = $nsattr ? '<$2 '.$nsattr.'="$1"' : '<';
         $xml = preg_replace($regexfrom, $regexto, $xml);
         // Let's change </namespace:tag> to </namespace_tag>
-        $xml = preg_replace('~</([a-z0-9]+):~is', '</$1_', $xml);
+        $xml = preg_replace('~</([a-z0-9]+):~is', '</', $xml);
         // Default flags I use
         if(empty($flags)) $flags = LIBXML_COMPACT | LIBXML_NOBLANKS | LIBXML_NOCDATA;
         // Now load and return (namespaceless)
