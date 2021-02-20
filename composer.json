@@ -3,9 +3,9 @@
     "description": "Support package for Findforsikring projects",
     "type": "library",
     "require": {
-        "nesbot/carbon": "^1.22",
+        "nesbot/carbon": "^1.22|^2",
         "kameli/nummerplade-api": "^1.0",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3|^7.0"
     },
     "authors": [
         {
